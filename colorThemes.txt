@@ -1,14 +1,29 @@
-Soft RPG Pastel
+Color Palette
+Primary Colors:
+Background: hsl(260 30% 8%) - Dark navy/purple
+Foreground: hsl(210 40% 96%) - Light cyan/white
 
-| Purpose          | Color            | Hex       |
-| ---------------- | ---------------- | --------- |
-| Main BG          | Frosted Lavender | `#F3F0FF` |
-| Card BG          | White            | `#FFFFFF` |
-| Accent           | Royal Purple     | `#7C3AED` |
-| Secondary        | Sky Blue         | `#60A5FA` |
-| XP               | Mint Green       | `#34D399` |
-| Health           | Rose Red         | `#F43F5E` |
-| Coins            | Warm Gold        | `#FACC15` |
-| Deadline Overdue | Soft Orange      | `#FB923C` |
-| Border           | Soft Gray        | `#E5E7EB` |
+Accent Colors:
+Primary (Purple): hsl(270 90% 55%) - Vibrant purple for CTAs and highlights
+Secondary (Gold): hsl(45 95% 55%) - Bright gold for rewards/coins
+Accent (Cyan): hsl(185 85% 50%) - Bright cyan for secondary accents
+
+UI Colors:
+Card: hsl(260 25% 12%) - Slightly lighter purple-black
+Muted: hsl(260 20% 30%) - Medium gray-purple
+Muted Foreground: hsl(210 20% 70%) - Light gray for secondary text
+Border: hsl(260 25% 20%) - Subtle purple-gray borders
+Input: hsl(260 25% 15%) - Dark input fields
+
+Functional Colors:
+Health Bar: Red gradient (#ef4444 to #dc2626)
+XP Bar: Blue-to-purple gradient (#3b82f6 to #8b5cf6)
+Stat Fill: Cyan-to-gold gradient
+Hex Equivalents (Approximate):
+Primary Purple: #8b5cf6
+Secondary Gold: #ffd700
+Accent Cyan: #06b6d4
+Background: #1a1428
+Card: #2d1f3d
+Muted: #4a3f54
 
