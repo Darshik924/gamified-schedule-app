@@ -1,0 +1,14 @@
+Soft RPG Pastel
+
+| Purpose          | Color            | Hex       |
+| ---------------- | ---------------- | --------- |
+| Main BG          | Frosted Lavender | `#F3F0FF` |
+| Card BG          | White            | `#FFFFFF` |
+| Accent           | Royal Purple     | `#7C3AED` |
+| Secondary        | Sky Blue         | `#60A5FA` |
+| XP               | Mint Green       | `#34D399` |
+| Health           | Rose Red         | `#F43F5E` |
+| Coins            | Warm Gold        | `#FACC15` |
+| Deadline Overdue | Soft Orange      | `#FB923C` |
+| Border           | Soft Gray        | `#E5E7EB` |
+
