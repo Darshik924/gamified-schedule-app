@@ -6,14 +6,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Gamer Profile Card</title>
 </head>
-<body class="bg-[#0b061a] flex items-center justify-center min-h-screen font-sans">
+<body class="bg-[url('src/assets/background_profilepage.jpg')] bg-cover bg-fixed flex items-center justify-center min-h-screen font-sans">
 
-    <div class="w-[500px] bg-[#1a112e] border-[3px] border-[#3a2b5e] rounded-[30px] p-6 shadow-2xl overflow-hidden">
+    <div class="w-[1000px] h-[500px] bg-[#1a112e]/75 backdrop-blur-md border-[3px] border-[#3a2b5e] rounded-[30px] p-6 shadow-[0_0_20px_rgba(142,84,233,0.8)] overflow-hidden">
+        <h1 class="text-5xl text-center font-bold pt-6 px-3 text-white mb-1">My Profile</h1>
         
         <div class="flex items-center gap-6 mb-8 mt-2">
             <div class="relative">
-                <div class="w-32 h-32 rounded-full border-4 border-[#8e54e9] p-1 shadow-[0_0_20px_rgba(142,84,233,0.5)]">
-                    <img src="https://via.placeholder.com/150" alt="Avatar" class="w-full h-full rounded-full object-cover">
+                <div class="w-52 h-52 rounded-full border-4 border-[#8e54e9] p-1 shadow-[0_0_20px_rgba(142,84,233,0.8)]">
+                    <img src="src/assets/cute-anime-profile-pictures-0lifptfs0jd9fml3.png" alt="Avatar" class="w-full h-full rounded-full object-cover z-20">
                 </div>
             </div>
 
@@ -47,8 +48,8 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 pt-6 border-t border-[#3a2b5e]/50">
-            <div class="text-center border-r border-[#3a2b5e]/50">
+        <div class="grid grid-cols-3 gap-2 pt-6 border-t border-[#ffffff]/50">
+            <div class="text-center border-r border-[#ffffff]/50">
                 <div class="flex items-center justify-center gap-1 text-[#ffcc33]">
                     <span class="text-lg">★</span>
                     <span class="text-xl font-bold text-white">2450</span>
@@ -56,7 +57,7 @@
                 <p class="text-xs text-gray-400">XP Points</p>
             </div>
 
-            <div class="text-center border-r border-[#3a2b5e]/50">
+            <div class="text-center border-r border-[#ffffff]/50">
                 <div class="flex items-center justify-center gap-1 text-red-500">
                     <span class="text-lg">❤</span>
                     <span class="text-xl font-bold text-white">85%</span>
