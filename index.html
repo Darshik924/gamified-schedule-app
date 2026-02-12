@@ -9,9 +9,9 @@
   </head>
   <body class="bg-[#1a1428] text-[hsl(210_40%_96%)] font-sans">
     <nav
-      class="w-full px-10 py-5 bg-[linear-gradient(to_right,hsl(260_30%_8%),hsl(260_35%_12%))] border-b border-[hsl(260_25%_20%)] flex items-center justify-between"
+      class="w-full px-10 py-5 bg-[linear-linear(to_right,hsl(260_30%_8%),hsl(260_35%_12%))] border-b border-[hsl(260_25%_20%)] flex items-center justify-between"
     >
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 hover:cursor-pointer">
         <div class="text-[#ffd700] text-2xl">🏆</div>
         <h1 class="text-2xl font-semibold tracking-wide">
           <span class="text-[#8b5cf6]">Quest</span>
@@ -51,7 +51,7 @@
               class="h-full rounded-full"
               style="
                 width: 85%;
-                background: linear-gradient(to right, #ef4444, #dc2626);
+                background: linear-linear(to right, #ef4444, #dc2626);
               "
             ></div>
           </div>
@@ -73,7 +73,7 @@
               class="h-full rounded-full"
               style="
                 width: 65%;
-                background: linear-gradient(to right, #3b82f6, #8b5cf6);
+                background: linear-linear(to right, #3b82f6, #8b5cf6);
               "
             ></div>
           </div>
@@ -89,6 +89,144 @@
         </div>
       </div>
     </nav>
+
+    <section class="px-10 mt-12">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="text-3xl text-[#06b6d4]">📊</div>
+        <h2 class="text-3xl font-semibold tracking-wide">
+          Your <span class="text-[#8b5cf6]">Progress</span>
+        </h2>
+      </div>
+      >
+      <div class="grid grid-cols-3 gap-8">
+        <div
+          class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300"
+        >
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#8b5cf6] flex items-center justify-center text-xl"
+            >
+              ⚡
+            </div>
+            <span class="text-[hsl(210_20%_70%)] text-sm"> Active Tasks </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#8b5cf6]">6</h3>
+
+          <div
+            class="h-1 w-full mt-4 rounded-full bg-linear-to-r from-[#06b6d4] to-[#ffd700]"
+          ></div>
+        </div>
+
+        <div
+          class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition duration-300"
+        >
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#ffd700] flex items-center justify-center text-xl"
+            >
+              🎯
+            </div>
+            <span class="text-[hsl(210_20%_70%)] text-sm">
+              Completed Today
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#06b6d4]">1</h3>
+
+          <div
+            class="h-1 w-full mt-4 rounded-full bg-linear-to-r from-[#06b6d4] to-[#ffd700]"
+          ></div>
+        </div>
+
+        <div
+          class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] transition duration-300"
+        >
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#ffd700] to-[#8b5cf6] flex items-center justify-center text-xl"
+            >
+              🔥
+            </div>
+            <span class="text-[hsl(210_20%_70%)] text-sm">
+              Current Streak
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#ffd700]">
+            12 <span class="text-lg text-[hsl(210_20%_70%)]">days</span>
+          </h3>
+
+          <div
+            class="h-1 w-full mt-4 rounded-full bg-linear-to-r from-[#ffd700] to-[#8b5cf6]"
+          ></div>
+        </div>
+
+        <!-- Best Streak -->
+        <div
+          class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300"
+        >
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center text-xl"
+            >
+              🏆
+            </div>
+            <span class="text-[hsl(210_20%_70%)] text-sm"> Best Streak </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#8b5cf6]">
+            24 <span class="text-lg text-[hsl(210_20%_70%)]">days</span>
+          </h3>
+
+          <div
+            class="h-1 w-full mt-4 rounded-full bg-linear-to-r from-[#8b5cf6] to-[#06b6d4]"
+          ></div>
+        </div>
+
+        <!-- Total Completed -->
+        <div
+          class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition duration-300"
+        >
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#8b5cf6] flex items-center justify-center text-xl"
+            >
+              🧠
+            </div>
+            <span class="text-[hsl(210_20%_70%)] text-sm">
+              Total Completed
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#06b6d4]">47</h3>
+
+          <div
+            class="h-1 w-full mt-4 rounded-full bg-linear-to-r from-[#06b6d4] to-[#8b5cf6]"
+          ></div>
+        </div>
+
+        <!-- Achievements -->
+        <div
+          class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] transition duration-300"
+        >
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#ffd700] to-[#06b6d4] flex items-center justify-center text-xl"
+            >
+              🏅
+            </div>
+            <span class="text-[hsl(210_20%_70%)] text-sm"> Achievements </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#ffd700]">8</h3>
+
+          <div
+            class="h-1 w-full mt-4 rounded-full bg-linear-to-r from-[#ffd700] to-[#06b6d4]"
+          ></div>
+        </div>
+      </div>
+    </section>
 
     <script type="module" src="./src/js/app.js"></script>
   </body>
