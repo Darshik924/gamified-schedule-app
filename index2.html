@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Gamer Profile Card</title>
+</head>
+<body class="bg-[#0b061a] flex items-center justify-center min-h-screen font-sans">
+
+    <div class="w-[500px] bg-[#1a112e] border-[3px] border-[#3a2b5e] rounded-[30px] p-6 shadow-2xl overflow-hidden">
+        
+        <div class="flex items-center gap-6 mb-8 mt-2">
+            <div class="relative">
+                <div class="w-32 h-32 rounded-full border-4 border-[#8e54e9] p-1 shadow-[0_0_20px_rgba(142,84,233,0.5)]">
+                    <img src="https://via.placeholder.com/150" alt="Avatar" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+
+            <div class="flex-1">
+                <h1 class="text-3xl font-bold text-white mb-1">Avatar</h1>
+                <div class="inline-block bg-[#2d1b4d] border border-[#ffcc33] text-[#ffcc33] text-sm px-3 py-0.5 rounded-md mb-4">
+                    Level 7 ★
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-300 mb-1 px-1">
+                            <span class="font-bold">XP</span>
+                            <span>650 / 1000</span>
+                        </div>
+                        <div class="w-full bg-[#110a21] h-2.5 rounded-full overflow-hidden border border-gray-800">
+                            <div class="bg-gradient-to-r from-[#2193b0] to-[#6dd5ed] h-full w-[65%] shadow-[0_0_10px_#2193b0]"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-300 mb-1 px-1">
+                            <span class="font-bold">HP</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="w-full bg-[#110a21] h-2.5 rounded-full overflow-hidden border border-gray-800">
+                            <div class="bg-gradient-to-r from-[#ee0979] to-[#ff6a00] h-full w-[85%] shadow-[0_0_10px_#ee0979]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 pt-6 border-t border-[#3a2b5e]/50">
+            <div class="text-center border-r border-[#3a2b5e]/50">
+                <div class="flex items-center justify-center gap-1 text-[#ffcc33]">
+                    <span class="text-lg">★</span>
+                    <span class="text-xl font-bold text-white">2450</span>
+                </div>
+                <p class="text-xs text-gray-400">XP Points</p>
+            </div>
+
+            <div class="text-center border-r border-[#3a2b5e]/50">
+                <div class="flex items-center justify-center gap-1 text-red-500">
+                    <span class="text-lg">❤</span>
+                    <span class="text-xl font-bold text-white">85%</span>
+                </div>
+                <p class="text-xs text-gray-400">Health</p>
+            </div>
+
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-1 text-[#ffcc33]">
+                    <span class="text-lg">★</span>
+                    <span class="text-xl font-bold text-white">Level 7</span>
+                    <span class="text-lg">★</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
