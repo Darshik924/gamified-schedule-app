@@ -113,7 +113,7 @@
             </span>
           </div>
 
-          <h3 class="text-4xl font-bold text-[#8b5cf6]">6</h3>
+          <h3 id = "activeTask" class="text-4xl font-bold text-[#8b5cf6]">0</h3>
         </div>
 
         <div
@@ -235,7 +235,7 @@
             >
               <div class="flex items-center gap-3">
                 <h3 class="text-xl font-semibold text-white">To-Do</h3>
-                <span
+                <span id="todoCount"
                   class="px-3 py-1 text-sm rounded-full bg-white/20 text-white"
                 >
                   0
@@ -245,11 +245,11 @@
               <span class="text-white text-lg">⌄</span>
             </div>
 
-            <div class="p-6 space-y-6 min-h-75">
+            <div id = "todoContainer" class="p-6 space-y-6 min-h-75">
               <!-- TODO CARDS WILL BE APPENDED HERE -->
             </div>
 
-            <button
+            <button id = "openModal"
               class="w-full flex items-center justify-center gap-3 py-4 hover:cursor-pointer rounded-2xl border-2 border-dashed border-[hsl(260_25%_30%)] bg-[hsl(260_25%_12%)] text-[hsl(210_20%_70%)] hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[hsl(260_25%_15%)] hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300"
             >
               <span class="text-2xl font-light">+</span>
@@ -266,7 +266,7 @@
             >
               <div class="flex items-center gap-3">
                 <h3 class="text-xl font-semibold text-white">In Progress</h3>
-                <span
+                <span id="progressCount"
                   class="px-3 py-1 text-sm rounded-full bg-white/20 text-white"
                 >
                   0
@@ -276,11 +276,12 @@
               <span class="text-white text-lg">⌄</span>
             </div>
 
-            <div class="p-6 space-y-6 min-h-75">
+            <div id="progressContainer" class="p-6 space-y-6 min-h-75">
               <!-- IN PROGRESS CARDS WILL BE APPENDED HERE -->
             </div>
 
             <button
+              id="openModalProgress"
               class="w-full flex items-center justify-center gap-3 py-4 hover:cursor-pointer rounded-2xl border-2 border-dashed border-[hsl(260_25%_30%)] bg-[hsl(260_25%_12%)] text-[hsl(210_20%_70%)] hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[hsl(260_25%_15%)] hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300"
             >
               <span class="text-2xl font-light">+</span>
@@ -297,7 +298,7 @@
             >
               <div class="flex items-center gap-3">
                 <h3 class="text-xl font-semibold text-white">Completed</h3>
-                <span
+                <span id="completedCount"
                   class="px-3 py-1 text-sm rounded-full bg-white/20 text-white"
                 >
                   0
@@ -307,16 +308,10 @@
               <span class="text-white text-lg">⌄</span>
             </div>
 
-            <div class="p-6 space-y-6 min-h-75">
+            <div id = "completedContainer" class="p-6 space-y-6 min-h-75">
               <!-- COMPLETED CARDS WILL BE APPENDED HERE -->
             </div>
 
-            <button
-              class="w-full flex items-center justify-center gap-3 py-4 hover:cursor-pointer rounded-2xl border-2 border-dashed border-[hsl(260_25%_30%)] bg-[hsl(260_25%_12%)] text-[hsl(210_20%_70%)] hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[hsl(260_25%_15%)] hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300"
-            >
-              <span class="text-2xl font-light">+</span>
-              <span class="text-lg font-medium tracking-wide"> Add Task </span>
-            </button>
 
             
           </div>
@@ -324,6 +319,51 @@
       </div>
     </section>
 
-    <script type="module" src="./src/js/app.js"></script>
+    <!-- ================= TASK MODAL ================= -->
+    <div id="taskModal"
+    class = "fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center hidden z-50">
+    <div class = "w-[420px] bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-8 shadow-xl">
+      <h2 class = "text-2xl font-bold mb-6 text-[#8b5cf6]"> Create New Quest</h2>
+      <div class = "mb-4">
+
+
+        <label class = "block mb-2 text-[hsl(210_20%_70%)]"> Task Name </label>
+        <input id = "taskName" 
+        class = "w-full p-3 rounded-lg bg-[hsl(260_25%_15%)] border border-[hsl(260_25%_20%)] focus:outline-none focus:border-[#8b5cf6]"
+        type = "text"
+        placeholder="Add Task Name"/>
+      </div>
+
+      <div class = "mb-4">
+        <label class = "block mb-2 text-[hsl(210_20%_70%)]"> Difficulty </label>
+        <div class = "flex gap-3">
+          <button type = "button" class = "difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]">Easy</button>
+          <button type = "button" class = "difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]">Medium</button>
+          <button type = "button" class = "difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]">Hard</button>
+        </div>
+      </div>
+
+      <div class = "mb-6">
+        <label class = "block mb-2 text-[hsl(210_20%_70%)]"> Deadline </label>
+        <input id="taskTime" 
+        type = "number"
+        class = "w-full p-3 rounded-lg bg-[hsl(260_25%_15%)] border border-[hsl(260_25%_20%)] focus:outline-none focus:border-[#06b6d4]" 
+        placeholder="Add in Hours" />
+      </div>
+
+      <div class = "flex justify-end gap-4">
+        <button id="cancelTask"
+        class = "px-4 py-2 rounded-lg bg-[hsl(260_25%_15%)] hover:bg-[hsl(260_25%_20%)]">
+        Cancel
+      </button>
+
+      <button id="saveTask"
+      class = "px-4 py-2 rounded-lg bg-[hsl(260_25%_15%)] hover:bg-[hsl(260_25%_20%)]">
+      Add Quest
+    </button>
+    </div>
+    </div>
+    </div>
+    <script src="./src/js/app.js"></script>
   </body>
 </html>
