@@ -99,7 +99,6 @@ function renderProfile(appData) {
 
   const { user } = appData;
 
-  // Select elements
   const usernameEl = document.querySelector("[data-username]");
   const levelBadgeEl = document.querySelector("[data-level-badge]");
   const xpTextEl = document.querySelector("[data-xp-text]");
@@ -107,10 +106,8 @@ function renderProfile(appData) {
   const totalXpEl = document.querySelector("[data-total-xp]");
   const levelTextEl = document.querySelector("[data-level-text]");
 
-  // Safety check
   if (!usernameEl) return;
 
-  // Set values
   usernameEl.textContent = user.name;
   levelBadgeEl.textContent = `Level ${user.level} ★`;
   xpTextEl.textContent = `${user.xp} / ${user.maxXp}`;
@@ -118,7 +115,6 @@ function renderProfile(appData) {
   totalXpEl.textContent = user.totalXp || user.xp;
   levelTextEl.textContent = `Level ${user.level}`;
 
-  // Calculate XP %
   const xpPercent = Math.min((user.xp / user.maxXp) * 100, 100);
   xpBarEl.style.width = `${xpPercent}%`;
 }
