@@ -104,10 +104,7 @@ function renderProfile(appData) {
   const levelBadgeEl = document.querySelector("[data-level-badge]");
   const xpTextEl = document.querySelector("[data-xp-text]");
   const xpBarEl = document.querySelector("[data-xp-bar]");
-  const hpTextEl = document.querySelector("[data-hp-text]");
-  const hpBarEl = document.querySelector("[data-hp-bar]");
   const totalXpEl = document.querySelector("[data-total-xp]");
-  const healthStatEl = document.querySelector("[data-health-stat]");
   const levelTextEl = document.querySelector("[data-level-text]");
 
   // Safety check
@@ -117,10 +114,8 @@ function renderProfile(appData) {
   usernameEl.textContent = user.name;
   levelBadgeEl.textContent = `Level ${user.level} ★`;
   xpTextEl.textContent = `${user.xp} / ${user.maxXp}`;
-  hpTextEl.textContent = `${user.hp}%`;
 
   totalXpEl.textContent = user.totalXp || user.xp;
-  healthStatEl.textContent = `${user.hp}%`;
   levelTextEl.textContent = `Level ${user.level}`;
 
   // Calculate XP %
