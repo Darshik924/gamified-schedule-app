@@ -1,6 +1,6 @@
 //Adding the quests part, don't change pls
 
-import { loadFromLocalStor, saveToLocalStor, addTask } from "./backend.js";
+import { loadFromLocalStor, saveToLocalStor } from "./backend.js";
 
 console.log("JS LOADED");
 const modal = document.getElementById("taskModal");
@@ -48,7 +48,6 @@ profileBackBtn.addEventListener("click", () => {
 });
 
 let appData = loadFromLocalStor();
-console.log("Loaded appData:", appData);
 
 if (!appData) {
   appData = {
@@ -129,6 +128,67 @@ function renderView() {
   } else {
     profilePage.style.display = "none";
     mainPage.style.display = "block";
+  }
+}
+
+function addTask(title, xp = 50) {
+  const newTask = {
+    id: Date.now().toString(),
+    title,
+    xp,
+    completed: false,
+    createdAt: Date.now(),
+  };
+
+  appData.tasks.push(newTask);
+  saveToLocalStor(appData);
+  renderTasks(); // important
+}
+
+function renderTasks() {
+  const taskList = document.getElementById("task-list");
+  taskList.innerHTML = "";
+
+  appData.tasks.forEach((task) => {
+    const li = document.createElement("li");
+    li.textContent = `${task.title} (${task.xp} XP)`;
+
+    if (task.completed) {
+      li.style.textDecoration = "line-through";
+    }
+
+    li.addEventListener("click", () => completeTask(task.id));
+
+    taskList.appendChild(li);
+  });
+}
+
+function completeTask(id) {
+  const task = appData.tasks.find((t) => t.id === id);
+
+  if (!task || task.completed) return;
+
+  task.completed = true;
+
+  // Give XP
+  appData.user.xp += task.xp;
+  appData.user.totalXp += task.xp;
+
+  checkLevelUp();
+
+  saveToLocalStor(appData);
+  renderTasks();
+  renderData();
+}
+
+function checkLevelUp() {
+  const user = appData.user;
+
+  while (user.xp >= user.maxXp) {
+    user.xp -= user.maxXp;
+    user.level += 1;
+    user.maxXp = Math.floor(user.maxXp * 1.2);
+    user.hp = 100; // refill HP on level up
   }
 }
 
