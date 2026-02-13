@@ -30,6 +30,8 @@ const healthBar = document.querySelector(".health-bar");
 const xpBar = document.querySelector(".xp-bar");
 const userCoins = document.querySelector(".user-coins");
 const userLevel = document.querySelector(".user-level");
+const userTotTasks = document.querySelector(".completed-tasks");
+const userAchievements = document.querySelector(".achievements");
 
 const view = {
   VIEW: "MAIN",
@@ -58,12 +60,24 @@ if (!appData) {
       maxXp: 1000,
       hp: 100,
       totalXp: 0,
+      completedTasks: 0,
+      achievements: 0,
+      coins: 500,
     },
 
     tasks: [],
   };
 
   saveToLocalStor(appData);
+}
+
+// 🔥 Normalize old saves
+if (!appData.user.completedTasks) {
+  appData.user.completedTasks = 0;
+}
+
+if (!appData.user.coins) {
+  appData.user.coins = 0;
 }
 
 renderView();
@@ -81,6 +95,7 @@ function renderData(appData) {
   userXP.textContent = `${user.xp} / ${user.maxXp}`;
   xpBar.style.width = `${(user.xp / user.maxXp) * 100}%`;
 
+  userTotTasks.textContent = `${user.completedTasks}`;
   healthBar.style.width = `${user.hp}%`;
 }
 
