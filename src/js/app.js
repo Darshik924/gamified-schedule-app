@@ -211,3 +211,4 @@ function updateCounts() {
   activeTask.textContent =
     todoContainer.children.length + progressContainer.children.length;
 }
+ 
