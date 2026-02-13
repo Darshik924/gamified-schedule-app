@@ -18,27 +18,59 @@
     class=" bg-[url('/src/assets/homepagebg2.png')] bg-fixed bg-cover bg-center bg-void min-h-screen flex justify-center items-start p-4 text-purple-100 font-sans">
 
     <div class="w-full border border-purple-900 bg-black/40 p-4 shadow-2xl rounded-sm">
+        <div class="flex item-center justify-between">
+            <div class="goldCoins">
+                <span class="text-[#ffd700] text-lg">🪙</span>
+                <span class="font-bold user-coins text-[#ffd700]"> 2450 </span>
+            </div>
 
-        <div class="goldCoins">
-            <span class="text-[#ffd700] text-lg">🪙</span>
-            <span class="font-bold user-coins text-[#ffd700]"> 2450 </span>
-
+            <button
+                class="back  bg-black/5 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-[2px] rounded-2xl p-2 shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer hover:border-white hover:shadow-[0_0_25px_rgba(252,252,252,0.5)] hover:transition duration-1">
+                Back </button>
         </div>
 
         <section
-            class=" details flex items-center h-60 gap-5 p-4 border border-purple-800 bg-purple-900/20 mb-6 rounded-sm">
-            <div class="relative">
+            class="details flex items-center justify-around h-72 gap-8 p-6 mb-5 border-amber-500/30 bg-purple-900/10 backdrop-blur-md  border-[2px] rounded-2xl  shadow-[0_0_25px_rgba(212,175,55,0.5)]  hover:cursor-pointer hover:border-white hover:shadow-[0_0_25px_rgba(252,252,252,0.5)] hover:transition duration-1 rounded-2xl relative overflow-hidden">
+
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-purple-600/20 blur-[100px]"></div>
+
+            <div class="relative group">
                 <div
-                    class="w-20 h-20 rounded-full border-2 border-blue-400 overflow-hidden shadow-[0_0_15px_rgba(96,165,250,0.6)]">
-                    <img class="image w-full h-full object-cover"
+                    class="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-600 opacity-40 blur group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-pulse">
+                </div>
+
+                <div class="relative w-[250px] ">
+                    <img class="image w-full h-full object-cover "
                         src="https://via.placeholder.com/80/451a03/ffffff?text=FK" alt="Fire Knight">
                 </div>
             </div>
-            <div class="space-y-1">
-                <h2 id="name" class="text-lg font-semibold tracking-tight">Name : Fire Knight</h2>
-                <p id="cost" class="text-sm text-purple-300"> Price : 1200</p>
 
+            <div class="flex flex-col justify-center space-y-4 z-10">
+                <div>
+
+                    <h2 id="name" class="text-4xl font-bold tracking-tight text-white drop-shadow-md">
+                        Name:
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl">🪙</span>
+                        <p id="cost" class="text-2xl font-mono font-bold text-amber-400">
+                            Price : 100
+                        </p>
+                    </div>
+
+                    <button
+                        class="group relative px-8 py-3 font-bold text-white transition-all duration-300 bg-white/5 border border-white/20 rounded-xl backdrop-blur-md hover:bg-amber-500 hover:border-amber-400 hover:text-black hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] active:scale-95">
+                        <span class="relative flex items-center gap-2">
+                            PURCHASE
+                        </span>
+                    </button>
+                </div>
             </div>
+
+            <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-amber-600/10 blur-[100px]"></div>
         </section>
 
         <main class="grid grid-cols-4 gap-3">
@@ -131,7 +163,7 @@
             </div> -->
         </main>
     </div>
-<script type="module" src="src/js/avatar.js"></script>
+    <script type="module" src="src/js/avatar.js"></script>
 </body>
 
 </html>
