@@ -5,24 +5,6 @@ import { loadFromLocalStor, saveToLocalStor, addTask } from "./backend.js";
 console.log("JS LOADED");
 const modal = document.getElementById("taskModal");
 
-let appData = loadFromLocalStor();
-
-if (!appData) {
-  appData = {
-    user: {
-      name: "Epic Quester",
-      level: 1,
-      xp: 0,
-      streak: 0,
-      health: 100,
-      coins: 500,
-    },
-    tasks: [],
-  };
-
-  saveToLocalStor(appData);
-}
-
 const openTodoBtn = document.getElementById("openModal");
 const openProgressBtn = document.getElementById("openModalProgress");
 
@@ -41,6 +23,14 @@ let activeColumn = null;
 const profileBtn = document.querySelector(".profile-btn");
 const profileBackBtn = document.querySelector(".profile-backbtn");
 
+const userXP = document.querySelector(".user-xp");
+const userHealth = document.querySelector(".user-health");
+const userName = document.querySelector(".user-name");
+const healthBar = document.querySelector(".health-bar");
+const xpBar = document.querySelector(".xp-bar");
+const userCoins = document.querySelector(".user-coins");
+const userLevel = document.querySelector(".user-level");
+
 const view = {
   VIEW: "MAIN",
 };
@@ -57,19 +47,34 @@ profileBackBtn.addEventListener("click", () => {
   renderView();
 });
 
+let appData = loadFromLocalStor();
+console.log("Loaded appData:", appData);
+
+if (!appData) {
+  appData = {
+    user: {
+      name: "Epic Quester",
+      level: 1,
+      xp: 0,
+      streak: 0,
+      health: 100,
+      coins: 500,
+    },
+    tasks: [],
+  };
+
+  saveToLocalStor(appData);
+}
+
 renderView();
 
-const userXP = document.querySelector(".user-xp");
-const userHealth = document.querySelector(".user-health");
-const userName = document.querySelector(".user-name");
-const healthBar = document.querySelector(".health-bar");
-const xpBar = document.querySelector(".xp-bar");
-const userCoins = document.querySelector(".user-coins");
+renderData(appData);
 
 function renderData(appData) {
   const { user } = appData;
 
   userName.textContent = user.name;
+  userLevel.textContent = `Level ${user.level}`;
   userXP.textContent = `${user.xp} / 1000`;
   userHealth.textContent = `${user.health} / 100`;
   userCoins.textContent = user.coins;
@@ -77,8 +82,6 @@ function renderData(appData) {
   xpBar.style.width = `${(user.xp / 1000) * 100}%`;
   healthBar.style.width = `${user.health}%`;
 }
-
-renderData(appData);
 
 function renderView() {
   if (view.VIEW === "PROFILE") {

@@ -4,12 +4,20 @@ function saveToLocalStor(data) {
 
 function loadFromLocalStor() {
   const data = localStorage.getItem("gamifiedAppData");
-  return data;
+
+  if (!data) return null;
+
+  try {
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error parsing localStorage data:", error);
+    return null;
+  }
 }
 
-function addTask(task) {
+function addTask(task, appData) {
   appData.tasks.push(task);
-  saveToLocalStorage(appData);
+  saveToLocalStor(appData);
 }
 
 export { saveToLocalStor, loadFromLocalStor, addTask };
