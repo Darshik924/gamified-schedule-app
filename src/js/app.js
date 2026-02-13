@@ -60,6 +60,7 @@ if (!appData) {
       hp: 100,
       totalXp: 0,
     },
+
     tasks: [],
   };
 
@@ -75,12 +76,13 @@ function renderData(appData) {
 
   userName.textContent = user.name;
   userLevel.textContent = `Level ${user.level}`;
-  userXP.textContent = `${user.xp} / 1000`;
-  userHealth.textContent = `${user.health} / 100`;
-  userCoins.textContent = user.coins;
+  userHealth.textContent = `${user.hp}%`;
+  userCoins.textContent = user.coins ?? 0;
 
-  xpBar.style.width = `${(user.xp / 1000) * 100}%`;
-  healthBar.style.width = `${user.health}%`;
+  userXP.textContent = `${user.xp} / ${user.maxXp}`;
+  xpBar.style.width = `${(user.xp / user.maxXp) * 100}%`;
+
+  healthBar.style.width = `${user.hp}%`;
 }
 
 function renderProfile(appData) {
@@ -198,11 +200,6 @@ function createTaskCard(name, difficulty, time) {
   let difficultyColor = "bg-[#06b6d4]";
   if (difficulty === "Medium") difficultyColor = "bg-[#ffd700]";
   if (difficulty === "Hard") difficultyColor = "bg-red-500";
-
-  addTask({
-    title: `${name}`,
-    status: "todo",
-  });
 
   const card = document.createElement("div");
   card.className =
