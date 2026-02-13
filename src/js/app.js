@@ -10,7 +10,9 @@ let appData = loadFromLocalStor();
 if (!appData) {
   appData = {
     user: {
-      name: "",
+      name: "Epic Quester",
+      level:1,
+      
     },
   };
 }
