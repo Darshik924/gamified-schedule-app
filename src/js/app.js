@@ -1,5 +1,7 @@
 //Adding the quests part, don't change pls
 
+console.log("MODULE RUNNING");
+
 import { loadFromLocalStor, saveToLocalStor } from "./backend.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressCount = document.getElementById("progressCount");
   const completeCount = document.getElementById("completedCount");
   const activeTask = document.getElementById("activeTask");
+  const Total = document.getElementById("Total");
 
   let selectedDifficulty = null;
   let activeColumn = null;
@@ -42,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const profilePage = document.querySelector(".profile-content");
   const mainPage = document.querySelector(".main-content");
+
+  updateCounts();
 
   // ================= SAFE EVENT LISTENERS =================
 
@@ -111,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProfile(appData);
   renderAllTasks();
   renderData(appData);
+  startTimer();
 
   // ================= RENDER FUNCTIONS =================
 
@@ -178,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         id: Date.now(),
         title: name,
         priority: selectedDifficulty,
-        endTime: time,
+        deadline: Date.now() + time * 60 * 60 * 1000,
         status: activeColumn === progressContainer ? "progress" : "todo",
       };
 
@@ -202,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = createTaskCard(
         task.title,
         task.priority,
-        task.endTime,
+        task.deadline,
         task.id,
       );
 
@@ -228,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (difficulty === "Hard") difficultyColor = "bg-red-500";
 
     const card = document.createElement("div");
+    card.setAttribute("data-id", id);
     card.className =
       "p-4 rounded-xl bg-[hsl(260_25%_15%)] border border-[hsl(260_25%_20%)] hover:border-[#8b5cf6] transition duration-300";
 
@@ -238,13 +245,12 @@ document.addEventListener("DOMContentLoaded", () => {
             ${difficulty}
         </span>
     </div>
-    <p class="text-md font-sans mb-4 font-bold text-[hsl(210_20%_70%)]">
-      Deadline: ${time} hours
-    </p>
+    <p class="task-time text-md font-sans mb-4 font-bold text-[hsl(210_20%_70%)]"></p>
     <div class="flex gap-4 text-xs">
       <button class="move-btn bg-blue-500 p-2 font-bold rounded-2xl">To-Do</button>
       <button class="move-btn bg-amber-500 p-2 font-bold rounded-2xl">Progress</button>
       <button class="move-btn bg-green-600 p-2 font-bold rounded-2xl">Done</button>
+      <button class="delete-btn bg-red-600 p-2 font-bold rounded-2xl">Delete</button>
     </div>
   `;
 
@@ -253,8 +259,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  function startTimer() {
+  setInterval(() => {
+    const now = Date.now();
+
+    appData.tasks.forEach(task => {
+  const card = document.querySelector(`[data-id="${task.id}"]`);
+  if (!card) return;
+
+  const timeEl = card.querySelector(".task-time");
+  if (!timeEl) return;
+
+  if (task.status === "completed") {
+    timeEl.textContent = "✅ Completed";
+    timeEl.classList.remove("text-red-500");
+    timeEl.classList.add("text-green-400");
+    return;
+  }
+
+  const remaining = task.deadline - Date.now();
+
+  if (remaining <= 0) {
+    timeEl.textContent = "⛔ Time Over";
+    timeEl.classList.add("text-red-500");
+  } else {
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+
+    timeEl.textContent = `Deadline: ${hours}h ${minutes}m`;
+  }
+  });
+  }, 1000);
+}
+
+
   function attachMoveLogic(card, taskId) {
     const buttons = card.querySelectorAll(".move-btn");
+    const deleteBtn = card.querySelector(".delete-btn");
 
     buttons[0].addEventListener("click", () => {
       updateTaskStatus(taskId, "todo");
@@ -267,6 +308,10 @@ document.addEventListener("DOMContentLoaded", () => {
     buttons[2].addEventListener("click", () => {
       updateTaskStatus(taskId, "completed");
     });
+
+    deleteBtn.addEventListener("click", () => {
+    deleteTask(taskId);
+    });
   }
 
   function updateTaskStatus(id, newStatus) {
@@ -277,6 +322,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     saveToLocalStor(appData);
     renderAllTasks();
+  }
+
+  function deleteTask(id) {
+  appData.tasks = appData.tasks.filter(task => task.id !== id);
+
+  saveToLocalStor(appData);
+  renderAllTasks();
+  renderData(appData);
   }
 
 
@@ -343,5 +396,6 @@ document.addEventListener("DOMContentLoaded", () => {
     completeCount.textContent = completedContainer.children.length;
     activeTask.textContent =
       todoContainer.children.length + progressContainer.children.length;
+    Total.textContent = completedContainer.children.length;
   }
 });
