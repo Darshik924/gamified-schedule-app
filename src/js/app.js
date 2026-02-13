@@ -1,6 +1,6 @@
 //Adding the quests part, don't change pls
 
-import { loadFromLocalStor, saveToLocalStor } from "./backend.js";
+import { loadFromLocalStor, saveToLocalStor, addTask } from "./backend.js";
 
 console.log("JS LOADED");
 const modal = document.getElementById("taskModal");
@@ -11,10 +11,16 @@ if (!appData) {
   appData = {
     user: {
       name: "Epic Quester",
-      level:1,
-      
+      level: 1,
+      xp: 0,
+      streak: 0,
+      health: 100,
+      coins: 500,
     },
+    tasks: [],
   };
+
+  saveToLocalStor(appData);
 }
 
 const openTodoBtn = document.getElementById("openModal");
@@ -52,6 +58,27 @@ profileBackBtn.addEventListener("click", () => {
 });
 
 renderView();
+
+const userXP = document.querySelector(".user-xp");
+const userHealth = document.querySelector(".user-health");
+const userName = document.querySelector(".user-name");
+const healthBar = document.querySelector(".health-bar");
+const xpBar = document.querySelector(".xp-bar");
+const userCoins = document.querySelector(".user-coins");
+
+function renderData(appData) {
+  const { user } = appData;
+
+  userName.textContent = user.name;
+  userXP.textContent = `${user.xp} / 1000`;
+  userHealth.textContent = `${user.health} / 100`;
+  userCoins.textContent = user.coins;
+
+  xpBar.style.width = `${(user.xp / 1000) * 100}%`;
+  healthBar.style.width = `${user.health}%`;
+}
+
+renderData(appData);
 
 function renderView() {
   if (view.VIEW === "PROFILE") {
@@ -131,6 +158,11 @@ function createTaskCard(name, difficulty, time) {
   let difficultyColor = "bg-[#06b6d4]";
   if (difficulty === "Medium") difficultyColor = "bg-[#ffd700]";
   if (difficulty === "Hard") difficultyColor = "bg-red-500";
+
+  addTask({
+    title: `${name}`,
+    status: "todo",
+  });
 
   const card = document.createElement("div");
   card.className =

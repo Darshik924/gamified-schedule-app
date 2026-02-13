@@ -7,5 +7,9 @@ function loadFromLocalStor() {
   return data;
 }
 
+function addTask(task) {
+  appData.tasks.push(task);
+  saveToLocalStorage(appData);
+}
 
-export { saveToLocalStor, loadFromLocalStor };
+export { saveToLocalStor, loadFromLocalStor, addTask };
