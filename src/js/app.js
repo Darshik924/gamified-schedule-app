@@ -24,9 +24,7 @@ const profileBtn = document.querySelector(".profile-btn");
 const profileBackBtn = document.querySelector(".profile-backbtn");
 
 const userXP = document.querySelector(".user-xp");
-const userHealth = document.querySelector(".user-health");
 const userName = document.querySelector(".user-name");
-const healthBar = document.querySelector(".health-bar");
 const xpBar = document.querySelector(".xp-bar");
 const userCoins = document.querySelector(".user-coins");
 const userLevel = document.querySelector(".user-level");
@@ -58,7 +56,6 @@ if (!appData) {
       level: 1,
       xp: 0,
       maxXp: 1000,
-      hp: 100,
       totalXp: 0,
       completedTasks: 0,
       achievements: 0,
@@ -89,14 +86,12 @@ function renderData(appData) {
 
   userName.textContent = user.name;
   userLevel.textContent = `Level ${user.level}`;
-  userHealth.textContent = `${user.hp}%`;
   userCoins.textContent = user.coins ?? 0;
 
   userXP.textContent = `${user.xp} / ${user.maxXp}`;
   xpBar.style.width = `${(user.xp / user.maxXp) * 100}%`;
 
   userTotTasks.textContent = `${user.completedTasks}`;
-  healthBar.style.width = `${user.hp}%`;
 }
 
 function renderProfile(appData) {
