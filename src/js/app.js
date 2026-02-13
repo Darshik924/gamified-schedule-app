@@ -56,9 +56,9 @@ if (!appData) {
       name: "Epic Quester",
       level: 1,
       xp: 0,
-      streak: 0,
-      health: 100,
-      coins: 500,
+      maxXp: 1000,
+      hp: 100,
+      totalXp: 0,
     },
     tasks: [],
   };
@@ -67,7 +67,7 @@ if (!appData) {
 }
 
 renderView();
-
+renderProfile(appData);
 renderData(appData);
 
 function renderData(appData) {
@@ -81,6 +81,43 @@ function renderData(appData) {
 
   xpBar.style.width = `${(user.xp / 1000) * 100}%`;
   healthBar.style.width = `${user.health}%`;
+}
+
+function renderProfile(appData) {
+  if (!appData || !appData.user) return;
+
+  const { user } = appData;
+
+  // Select elements
+  const usernameEl = document.querySelector("[data-username]");
+  const levelBadgeEl = document.querySelector("[data-level-badge]");
+  const xpTextEl = document.querySelector("[data-xp-text]");
+  const xpBarEl = document.querySelector("[data-xp-bar]");
+  const hpTextEl = document.querySelector("[data-hp-text]");
+  const hpBarEl = document.querySelector("[data-hp-bar]");
+  const totalXpEl = document.querySelector("[data-total-xp]");
+  const healthStatEl = document.querySelector("[data-health-stat]");
+  const levelTextEl = document.querySelector("[data-level-text]");
+
+  // Safety check
+  if (!usernameEl) return;
+
+  // Set values
+  usernameEl.textContent = user.name;
+  levelBadgeEl.textContent = `Level ${user.level} ★`;
+  xpTextEl.textContent = `${user.xp} / ${user.maxXp}`;
+  hpTextEl.textContent = `${user.hp}%`;
+
+  totalXpEl.textContent = user.totalXp || user.xp;
+  healthStatEl.textContent = `${user.hp}%`;
+  levelTextEl.textContent = `Level ${user.level}`;
+
+  // Calculate XP %
+  const xpPercent = Math.min((user.xp / user.maxXp) * 100, 100);
+  xpBarEl.style.width = `${xpPercent}%`;
+
+  // HP %
+  hpBarEl.style.width = `${user.hp}%`;
 }
 
 function renderView() {
