@@ -163,8 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ================= SAVE TASK =================
-
   if (saveBtn) {
     saveBtn.addEventListener("click", () => {
       const name = taskNameInput.value.trim();
@@ -191,8 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal();
     });
   }
-
-  // ================= RENDER ALL TASKS =================
 
   function renderAllTasks() {
     if (!todoContainer || !progressContainer || !completedContainer) return;
@@ -224,7 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCounts();
   }
 
-  // ================= CREATE CARD =================
 
   function createTaskCard(name, difficulty, time, id) {
     let difficultyColor = "bg-[#06b6d4]";
@@ -256,7 +251,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
-  // ================= MOVE LOGIC =================
 
   function attachMoveLogic(card, taskId) {
     const buttons = card.querySelectorAll(".move-btn");
@@ -284,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderAllTasks();
   }
 
-  // ================= BUTTON VISIBILITY =================
 
   function updateButtons(card, state) {
     const buttons = card.querySelectorAll(".move-btn");
@@ -304,7 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ================= RESET =================
 
   function closeModal() {
     modal.classList.add("hidden");
