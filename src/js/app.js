@@ -1,7 +1,19 @@
 //Adding the quests part, don't change pls
 
+import { loadFromLocalStor, saveToLocalStor } from "./backend.js";
+
 console.log("JS LOADED");
 const modal = document.getElementById("taskModal");
+
+let appData = loadFromLocalStor();
+
+if (!appData) {
+  appData = {
+    user: {
+      name: "",
+    },
+  };
+}
 
 const openTodoBtn = document.getElementById("openModal");
 const openProgressBtn = document.getElementById("openModalProgress");
@@ -24,6 +36,7 @@ const profileBackBtn = document.querySelector(".profile-backbtn");
 const view = {
   VIEW: "MAIN",
 };
+
 const profilePage = document.querySelector(".profile-content");
 const mainPage = document.querySelector(".main-content");
 
@@ -211,4 +224,3 @@ function updateCounts() {
   activeTask.textContent =
     todoContainer.children.length + progressContainer.children.length;
 }
- 
