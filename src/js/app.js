@@ -126,9 +126,6 @@ function renderProfile(appData) {
   // Calculate XP %
   const xpPercent = Math.min((user.xp / user.maxXp) * 100, 100);
   xpBarEl.style.width = `${xpPercent}%`;
-
-  // HP %
-  hpBarEl.style.width = `${user.hp}%`;
 }
 
 function renderView() {
