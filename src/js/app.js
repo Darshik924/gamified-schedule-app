@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         completedTasks: 0,
         achievements: 0,
         coins: 500,
+        ownedProfiles: [true, false, false, false, false, false, false, false, false, false, false, false, false],
       },
       tasks: [],
     };
