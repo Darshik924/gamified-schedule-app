@@ -15,5 +15,16 @@ function loadFromLocalStor() {
   }
 }
 
+function addTask(name, difficulity, time, data, i) {
+  data.tasks.push({
+    id: i,
+    title: `${name}`,
+    priority: `${difficulity}`,
+    endTime: `${time}`,
+    status: "",
+  });
 
-export { saveToLocalStor, loadFromLocalStor };
+  saveToLocalStor(data);
+}
+
+export { saveToLocalStor, loadFromLocalStor, addTask };
