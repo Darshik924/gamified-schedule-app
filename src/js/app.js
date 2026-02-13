@@ -123,19 +123,19 @@ function createTaskCard(name, difficulty, time) {
 
   card.innerHTML = `
     <div class = "flex justify-between items-center mb-3">
-        <h4 class = "font-semibold">${name}</h4>
+        <h4 class = "font-bold font-sans text-2xl items-center">${name}</h4>
         <span class = "text-xs px-2 py-1 rounded ${difficultyColor} text-black font-bold">
             ${difficulty}
         </span>
     </div>
-    <p class="text-sm text-[hsl(210_20%_70%)]">
+    <p class="text-md font-sans mb-4 font-bold hover text-[hsl(210_20%_70%)]">
       Deadline: ${time} hours
     </p>
 
-    <div class = "flex gap-2 text-xs"> 
-    <button class = "move-btn bg-blue-500 px-2 py-1 rounded">To-Do </button>
-    <button class="move-btn bg-amber-500 px-2 py-1 rounded">Progress</button>
-    <button class="move-btn bg-green-600 px-2 py-1 rounded">Done</button>
+    <div class = "flex gap-4 text-xs"> 
+    <button class = "move-btn bg-blue-500 p-2 font-bold font-sans rounded-2xl hover:cursor-pointer hover:bg-blue-800 text-shadow-white">To-Do </button>
+    <button class="move-btn bg-amber-500 p-2 font-bold font-sans rounded-2xl hover:cursor-pointer hover:bg-amber-700 text-shadow-white">Progress</button>
+    <button class="move-btn bg-green-600 p-2 font-bold font-sans rounded-2xl hover:cursor-pointer hover:bg-green-800 text-shadow-white">Done</button>
     `;
 
   attachMoveLogic(card);
