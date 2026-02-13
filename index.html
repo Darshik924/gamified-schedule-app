@@ -1,524 +1,409 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="./src/dist/output.css" />
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gamified-Schedule-app</title>
-  </head>
+<head>
+  <link rel="stylesheet" href="./src/dist/output.css" />
 
-  <body
-    class="bg-[url('/src/assets/homepagebg.png')] bg-fixed bg-cover bg-center text-[hsl(210_40%_96%)] font-sans"
-  >
-    <nav
-      class="w-full px-10 py-5 bg-[linear-gradient(to_right,hsl(260_30%_8%),hsl(260_35%_12%))] border-b border-[hsl(260_25%_20%)] flex items-center justify-between"
-    >
-      <div class="flex items-center gap-4 hover:cursor-pointer">
-        <div class="text-[#ffd700] text-2xl">🏆</div>
-        <h1 class="text-2xl font-semibold tracking-wide">
-          <span class="text-[#8b5cf6]">Quest</span>
-          <span class="text-[#ffd700]">Board</span>
-        </h1>
-      </div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gamified-Schedule-app</title>
+</head>
 
-      <button
-        class="profile-btn hover:cursor-pointer hover:border-2 rounded-2xl p-3 hover:border-[#8b5cf6]"
-      >
-        <div class="flex items-center gap-4">
-          <div
-            class="w-12 h-12 rounded-full border-2 border-[#8b5cf6] p-0.5 bg-linear-to-r from-[#3b82f6] to-[#8b5cf6]"
-          >
-            <div
-              class="w-full h-full rounded-full bg-[hsl(260_25%_12%)] flex items-center justify-center text-sm"
-            >
-              👤
-            </div>
-          </div>
+<body class="bg-[url('/src/assets/homepagebg2.png')] bg-fixed bg-cover bg-center text-[hsl(210_40%_96%)] font-sans">
+  <nav
+    class="w-full px-10 py-5 bg-[linear-gradient(to_right,hsl(260_30%_8%),hsl(260_35%_12%))] border-b border-[hsl(260_25%_20%)] flex items-center justify-between">
+    <div class="flex items-center gap-4 hover:cursor-pointer">
+      <div class="text-[#ffd700] text-2xl">🏆</div>
+      <h1 class="text-2xl font-semibold tracking-wide">
+        <span class="text-[#8b5cf6]">Quest</span>
+        <span class="text-[#ffd700]">Board</span>
+      </h1>
+    </div>
 
-          <div class="flex flex-col">
-            <span class="font-semibold user-name">Epic Quester</span>
-            <span class="text-md user-level font-bold text-[hsl(210_20%_70%)]"
-              >Level 7</span
-            >
+    <button class="profile-btn hover:cursor-pointer hover:border-2 rounded-2xl p-3 hover:border-[#8b5cf6]">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full border-2 border-[#8b5cf6] p-0.5 bg-linear-to-r from-[#3b82f6] to-[#8b5cf6]">
+          <div class="w-full h-full rounded-full bg-[hsl(260_25%_12%)] flex items-center justify-center text-sm">
+            👤
           </div>
         </div>
-      </button>
 
-      <div class="flex items-center gap-10">
-        <div class="flex flex-col min-w-35">
-          <div
-            class="flex items-center gap-2 text-md font-bold text-[hsl(210_20%_70%)]"
-          >
-            ❤️ <span>Health</span>
-          </div>
+        <div class="flex flex-col">
+          <span class="font-semibold user-name">Epic Quester</span>
+          <span class="text-md user-level font-bold text-[hsl(210_20%_70%)]">Level 7</span>
+        </div>
+      </div>
+    </button>
 
-          <div
-            class="w-full h-2 bg-[hsl(260_25%_20%)] rounded-full overflow-hidden mt-1"
-          >
-            <div
-              class="h-full health-bar rounded-full"
-              style="
+    <div class="flex items-center gap-10">
+      <div class="flex flex-col min-w-35">
+        <div class="flex items-center gap-2 text-md font-bold text-[hsl(210_20%_70%)]">
+          ❤️ <span>Health</span>
+        </div>
+
+        <div class="w-full h-2 bg-[hsl(260_25%_20%)] rounded-full overflow-hidden mt-1">
+          <div class="h-full health-bar rounded-full" style="
                 width: 85%;
                 background: linear-gradient(to right, #ef4444, #dc2626);
-              "
-            ></div>
-          </div>
-
-          <span class="text-xs mt-1 user-health text-[hsl(210_20%_70%)]">
-            85 / 100
-          </span>
+              "></div>
         </div>
 
-        <div class="flex flex-col min-w-40">
-          <div
-            class="flex items-center gap-2 text-md font-bold text-[hsl(210_20%_70%)]"
-          >
-            ⚡ <span>XP</span>
-          </div>
+        <span class="text-xs mt-1 user-health text-[hsl(210_20%_70%)]">
+          85 / 100
+        </span>
+      </div>
 
-          <div
-            class="w-full h-2 bg-[hsl(260_25%_20%)] rounded-full overflow-hidden mt-1"
-          >
-            <div
-              class="h-full rounded-full xp-bar"
-              style="
+      <div class="flex flex-col min-w-40">
+        <div class="flex items-center gap-2 text-md font-bold text-[hsl(210_20%_70%)]">
+          ⚡ <span>XP</span>
+        </div>
+
+        <div class="w-full h-2 bg-[hsl(260_25%_20%)] rounded-full overflow-hidden mt-1">
+          <div class="h-full rounded-full xp-bar" style="
                 width: 65%;
                 background: linear-gradient(to right, #3b82f6, #8b5cf6);
-              "
-            ></div>
+              "></div>
+        </div>
+
+        <span class="text-xs mt-1 user-xp text-[hsl(210_20%_70%)]">
+          650 / 1000
+        </span>
+      </div>
+
+      <div
+        class="flex items-center gap-2 bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] px-5 py-2 rounded-xl hover:border-[#ffd700] transition">
+        <span class="text-[#ffd700] text-lg">🪙</span>
+        <span class="font-bold user-coins text-[#ffd700]"> 2450 </span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="main-content">
+    <section class="px-10 mt-12">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="text-3xl text-[#06b6d4]">📊</div>
+        <h2 class="text-3xl font-semibold tracking-wide">
+          Your <span class="text-[#8b5cf6]">Progress</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8">
+        <div
+          class="bg-black/35 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-1 rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer">
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#8b5cf6] flex items-center justify-center text-xl">
+              ⚡️
+            </div>
+            <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
+              Active Tasks
+            </span>
           </div>
 
-          <span class="text-xs mt-1 user-xp text-[hsl(210_20%_70%)]">
-            650 / 1000
-          </span>
+          <h3 id="activeTask" class="text-4xl font-bold text-[#8b5cf6]">0</h3>
         </div>
 
         <div
-          class="flex items-center gap-2 bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] px-5 py-2 rounded-xl hover:border-[#ffd700] transition"
-        >
-          <span class="text-[#ffd700] text-lg">🪙</span>
-          <span class="font-bold user-coins text-[#ffd700]"> 2450 </span>
+          class="bg-black/35 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-1 rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer">
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#ffd700] flex items-center justify-center text-xl">
+              🎯
+            </div>
+            <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
+              Completed Today
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#06b6d4]">1</h3>
+        </div>
+
+        <div
+          class="bg-black/35 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-1 rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer">
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#ffd700] to-[#8b5cf6] flex items-center justify-center text-xl">
+              🔥
+            </div>
+            <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
+              Current Streak
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#ffd700]">
+            12
+            <span class="text-lg text-[hsl(210_20%_70%)] font-lightbold">days</span>
+          </h3>
+        </div>
+
+        <div
+          class="bg-black/35 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-1 rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer">
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center text-xl">
+              🏆
+            </div>
+            <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
+              Best Streak
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#8b5cf6]">
+            24
+            <span class="text-lg text-[hsl(210_20%_70%)] font-lightbold">days</span>
+          </h3>
+        </div>
+
+        <div
+          class="bg-black/35 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-1 rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer">
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#8b5cf6] flex items-center justify-center text-xl">
+              🧠
+            </div>
+            <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
+              Total Completed
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#06b6d4]">47</h3>
+        </div>
+
+        <!-- Achievements -->
+        <div
+          class="bg-black/35 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-1 rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer">
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-[#ffd700] to-[#06b6d4] flex items-center justify-center text-xl">
+              🏅
+            </div>
+            <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
+              Achievements
+            </span>
+          </div>
+
+          <h3 class="text-4xl font-bold text-[#ffd700]">8</h3>
         </div>
       </div>
-    </nav>
-
-    <section class="main-content">
-      <section class="px-10 mt-12">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="text-3xl text-[#06b6d4]">📊</div>
-          <h2 class="text-3xl font-semibold tracking-wide">
-            Your <span class="text-[#8b5cf6]">Progress</span>
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-3 gap-8">
-          <div
-            class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300 hover:cursor-pointer"
-          >
-            <div class="flex items-center gap-4 mb-4">
-              <div
-                class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#8b5cf6] flex items-center justify-center text-xl"
-              >
-                ⚡
-              </div>
-              <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
-                Active Tasks
-              </span>
-            </div>
-
-            <h3 id="activeTask" class="text-4xl font-bold text-[#8b5cf6]">0</h3>
-          </div>
-
-          <div
-            class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition duration-300 hover:cursor-pointer"
-          >
-            <div class="flex items-center gap-4 mb-4">
-              <div
-                class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#ffd700] flex items-center justify-center text-xl"
-              >
-                🎯
-              </div>
-              <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
-                Completed Today
-              </span>
-            </div>
-
-            <h3 class="text-4xl font-bold text-[#06b6d4]">1</h3>
-          </div>
-
-          <div
-            class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] transition duration-300 hover:cursor-pointer"
-          >
-            <div class="flex items-center gap-4 mb-4">
-              <div
-                class="w-12 h-12 rounded-xl bg-linear-to-br from-[#ffd700] to-[#8b5cf6] flex items-center justify-center text-xl"
-              >
-                🔥
-              </div>
-              <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
-                Current Streak
-              </span>
-            </div>
-
-            <h3 class="text-4xl font-bold text-[#ffd700]">
-              12
-              <span class="text-lg text-[hsl(210_20%_70%)] font-lightbold"
-                >days</span
-              >
-            </h3>
-          </div>
-
-          <div
-            class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300 hover:cursor-pointer"
-          >
-            <div class="flex items-center gap-4 mb-4">
-              <div
-                class="w-12 h-12 rounded-xl bg-linear-to-br from-[#8b5cf6] to-[#06b6d4] flex items-center justify-center text-xl"
-              >
-                🏆
-              </div>
-              <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
-                Best Streak
-              </span>
-            </div>
-
-            <h3 class="text-4xl font-bold text-[#8b5cf6]">
-              24
-              <span class="text-lg text-[hsl(210_20%_70%)] font-lightbold"
-                >days</span
-              >
-            </h3>
-          </div>
-
-          <div
-            class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition duration-300 hover:cursor-pointer"
-          >
-            <div class="flex items-center gap-4 mb-4">
-              <div
-                class="w-12 h-12 rounded-xl bg-linear-to-br from-[#06b6d4] to-[#8b5cf6] flex items-center justify-center text-xl"
-              >
-                🧠
-              </div>
-              <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
-                Total Completed
-              </span>
-            </div>
-
-            <h3 class="text-4xl font-bold text-[#06b6d4]">47</h3>
-          </div>
-
-          <!-- Achievements -->
-          <div
-            class="bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] transition duration-300 hover:cursor-pointer"
-          >
-            <div class="flex items-center gap-4 mb-4">
-              <div
-                class="w-12 h-12 rounded-xl bg-linear-to-br from-[#ffd700] to-[#06b6d4] flex items-center justify-center text-xl"
-              >
-                🏅
-              </div>
-              <span class="text-[hsl(210_20%_70%)] font-lightbold text-2xl">
-                Achievements
-              </span>
-            </div>
-
-            <h3 class="text-4xl font-bold text-[#ffd700]">8</h3>
-          </div>
-        </div>
-      </section>
-
-      <section class="px-10 mt-16">
-        <div class="flex items-center gap-4 mb-10">
-          <div class="text-4xl text-[#8b5cf6]">⚔️</div>
-          <h2 class="text-4xl font-semibold tracking-wide">
-            Quest <span class="text-[#8b5cf6]">Board</span>
-          </h2>
-        </div>
-
-        <div
-          class="bg-[hsl(260_25%_10%)] border border-[hsl(260_25%_20%)] rounded-3xl p-8 shadow-[0_0_40px_rgba(139,92,246,0.05)]"
-        >
-          <div class="grid grid-cols-3 gap-8">
-            <!-- ================= TO DO COLUMN ================= -->
-            <div
-              class="rounded-2xl overflow-hidden bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)]"
-            >
-              <div
-                class="flex items-center justify-between px-6 py-4 bg-linear-to-r from-blue-500 to-blue-600"
-              >
-                <div class="flex items-center gap-3">
-                  <h3 class="text-xl font-semibold text-white">To-Do</h3>
-                  <span
-                    id="todoCount"
-                    class="px-3 py-1 text-sm rounded-full bg-white/20 text-white"
-                  >
-                    0
-                  </span>
-                </div>
-
-                <span class="text-white text-lg">⌄</span>
-              </div>
-
-              <div id="todoContainer" class="p-6 space-y-6 min-h-75">
-                <!-- TODO CARDS WILL BE APPENDED HERE -->
-              </div>
-
-              <button
-                id="openModal"
-                class="w-full flex items-center justify-center gap-3 py-4 hover:cursor-pointer rounded-2xl border-2 border-dashed border-[hsl(260_25%_30%)] bg-[hsl(260_25%_12%)] text-[hsl(210_20%_70%)] hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[hsl(260_25%_15%)] hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300"
-              >
-                <span class="text-2xl font-light">+</span>
-                <span class="text-lg font-medium tracking-wide">
-                  Add Task
-                </span>
-              </button>
-            </div>
-
-            <!-- ================= IN PROGRESS COLUMN ================= -->
-            <div
-              class="rounded-2xl overflow-hidden bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)]"
-            >
-              <div
-                class="flex items-center justify-between px-6 py-4 bg-linear-to-r from-amber-400 to-orange-500"
-              >
-                <div class="flex items-center gap-3">
-                  <h3 class="text-xl font-semibold text-white">In Progress</h3>
-                  <span
-                    id="progressCount"
-                    class="px-3 py-1 text-sm rounded-full bg-white/20 text-white"
-                  >
-                    0
-                  </span>
-                </div>
-
-                <span class="text-white text-lg">⌄</span>
-              </div>
-
-              <div id="progressContainer" class="p-6 space-y-6 min-h-75">
-                <!-- IN PROGRESS CARDS WILL BE APPENDED HERE -->
-              </div>
-
-              <button
-                id="openModalProgress"
-                class="w-full flex items-center justify-center gap-3 py-4 hover:cursor-pointer rounded-2xl border-2 border-dashed border-[hsl(260_25%_30%)] bg-[hsl(260_25%_12%)] text-[hsl(210_20%_70%)] hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[hsl(260_25%_15%)] hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300"
-              >
-                <span class="text-2xl font-light">+</span>
-                <span class="text-lg font-medium tracking-wide">
-                  Add Task
-                </span>
-              </button>
-            </div>
-
-            <!-- ================= COMPLETED COLUMN ================= -->
-            <div
-              class="rounded-2xl overflow-hidden bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)]"
-            >
-              <div
-                class="flex items-center justify-between px-6 py-4 bg-linear-to-r from-green-500 to-emerald-600"
-              >
-                <div class="flex items-center gap-3">
-                  <h3 class="text-xl font-semibold text-white">Completed</h3>
-                  <span
-                    id="completedCount"
-                    class="px-3 py-1 text-sm rounded-full bg-white/20 text-white"
-                  >
-                    0
-                  </span>
-                </div>
-
-                <span class="text-white text-lg">⌄</span>
-              </div>
-
-              <div id="completedContainer" class="p-6 space-y-6 min-h-75">
-                <!-- COMPLETED CARDS WILL BE APPENDED HERE -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </section>
 
-    <div class="flex justify-center">
-      <section
-        class="profile-content bg-[url('src/assets/background_profilepage.jpg')] bg-cover bg-fixed flex items-center min-h-screen font-sans"
-      >
-        <div
-          class="w-250 h-auto bg-[#1a112e]/75 backdrop-blur-md border-[3px] border-[#3a2b5e] rounded-[30px] p-6 shadow-[0_0_20px_rgba(142,84,233,0.8)]"
-        >
-          <div class="flex mr-4">
-            <button
-              class="text-white text-xl hover:bg-[#3a2b5e] hover:cursor-pointer font-bold font-sans p-3 profile-backbtn rounded-2xl"
-            >
-              Back
-            </button>
-            <div class="flex justify-center w-full">
-              <h1 class="text-5xl text-center font-bold px-3 text-white mb-1">
-                My Profile
-              </h1>
-            </div>
-          </div>
+    <section class="px-10 mt-16">
+      <div class="flex items-center gap-4 mb-10">
+        <div class="text-4xl text-[#8b5cf6]">⚔️</div>
+        <h2 class="text-4xl font-semibold tracking-wide">
+          Quest <span class="text-[#8b5cf6]">Board</span>
+        </h2>
+      </div>
 
-          <div class="flex items-center gap-6 mb-8 mt-2">
-            <div class="relative">
-              <div
-                class="w-52 rounded-full border-4 border-[#8e54e9] p-1 shadow-[0_0_20px_rgba(142,84,233,0.8)]"
-              >
-                <img
-                  src="src/assets/cute-anime-profile-pictures-0lifptfs0jd9fml3.png"
-                  alt="Avatar"
-                  class="w-full h-full rounded-full object-cover z-20"
-                />
-              </div>
-            </div>
-
-            <div class="flex-1">
-              <h1 class="text-3xl font-bold text-white mb-1">Avatar</h1>
-              <div
-                class="inline-block bg-[#2d1b4d] border border-[#ffcc33] text-[#ffcc33] text-sm px-3 py-0.5 rounded-md mb-4"
-              >
-                Level 7 ★
-              </div>
-
-              <div class="space-y-4">
-                <div>
-                  <div
-                    class="flex justify-between text-xs text-gray-300 mb-1 px-1"
-                  >
-                    <span class="font-bold"> ⚡️ XP</span>
-                    <span>650 / 1000</span>
-                  </div>
-                  <div
-                    class="w-full bg-[#110a21] h-2.5 rounded-full overflow-hidden border border-gray-800"
-                  >
-                    <div
-                      class="bg-linear-to-r from-[#2193b0] to-[#6dd5ed] h-full w-[65%] shadow-[0_0_10px_#2193b0]"
-                    ></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div
-                    class="flex justify-between text-xs text-gray-300 mb-1 px-1"
-                  >
-                    <span class="font-bold">❤️ HP</span>
-                    <span>85%</span>
-                  </div>
-                  <div
-                    class="w-full bg-[#110a21] h-2.5 rounded-full overflow-hidden border border-gray-800"
-                  >
-                    <div
-                      class="bg-linear-to-r from-[#ee0979] to-[#ff6a00] h-full w-[85%] shadow-[0_0_10px_#ee0979]"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-3 gap-2 pt-6 border-t border-[#ffffff]/50">
-            <div class="text-center border-r border-[#ffffff]/50">
-              <div
-                class="flex items-center justify-center gap-1 text-[#ffcc33]"
-              >
-                <span class="text-lg">★</span>
-                <span class="text-xl font-bold text-white">2450</span>
-              </div>
-              <p class="text-xs text-gray-400">XP Points</p>
-            </div>
-
-            <div class="text-center border-r border-[#ffffff]/50">
-              <div class="flex items-center justify-center gap-1 text-red-500">
-                <span class="text-lg">❤</span>
-                <span class="text-xl font-bold text-white">85%</span>
-              </div>
-              <p class="text-xs text-gray-400">Health</p>
-            </div>
-
-            <div class="text-center">
-              <div
-                class="flex items-center justify-center gap-1 text-[#ffcc33]"
-              >
-                <span class="text-lg">★</span>
-                <span class="text-xl font-bold text-white">Level 7</span>
-                <span class="text-lg">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ================= TASK MODAL ================= -->
-    <div
-      id="taskModal"
-      class="fixed inset-0 bg-black/60 backdrop-blur-sm items-center flex hidden justify-center z-50"
-    >
       <div
-        class="w-105 bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-8 shadow-xl"
-      >
-        <h2 class="text-2xl font-bold mb-6 text-[#8b5cf6]">Create New Quest</h2>
-        <div class="mb-4 mt-4">
-          <label class="block mb-2 text-[hsl(210_20%_70%)]"> Task Name </label>
-          <input
-            id="taskName"
-            class="w-full p-3 rounded-lg bg-[hsl(260_25%_15%)] border border-[hsl(260_25%_20%)] focus:outline-none focus:border-[#8b5cf6]"
-            type="text"
-            placeholder="Add Task Name"
-          />
-        </div>
+        class="bg-black/35 backdrop-blur-md border-[rgba(212,175,55,0.5)] border-1 rounded-2xl p-6 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition duration-0.5 hover:cursor-pointer">
+        <div class="grid grid-cols-3 gap-8">
+          <!-- ================= TO DO COLUMN ================= -->
+          <div class="rounded-2xl overflow-hidden bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)]">
+            <div class="flex items-center justify-between px-6 py-4 bg-linear-to-r from-blue-500 to-blue-600">
+              <div class="flex items-center gap-3">
+                <h3 class="text-xl font-semibold text-white">To-Do</h3>
+                <span id="todoCount" class="px-3 py-1 text-sm rounded-full bg-white/20 text-white">
+                  0
+                </span>
+              </div>
 
-        <div class="mb-4">
-          <label class="block mb-2 text-[hsl(210_20%_70%)]"> Difficulty </label>
-          <div class="flex gap-3">
-            <button
-              type="button"
-              class="difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]"
-            >
-              Easy
+              <span class="text-white text-lg">⌄</span>
+            </div>
+
+            <div id="todoContainer" class="p-6 space-y-6 min-h-75">
+              <!-- TODO CARDS WILL BE APPENDED HERE -->
+            </div>
+
+            <button id="openModal"
+              class="w-full flex items-center justify-center gap-3 py-4 hover:cursor-pointer rounded-2xl border-2 border-dashed border-[hsl(260_25%_30%)] bg-[hsl(260_25%_12%)] text-[hsl(210_20%_70%)] hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[hsl(260_25%_15%)] hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300">
+              <span class="text-2xl font-light">+</span>
+              <span class="text-lg font-medium tracking-wide">
+                Add Task
+              </span>
             </button>
-            <button
-              type="button"
-              class="difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]"
-            >
-              Medium
+          </div>
+
+          <!-- ================= IN PROGRESS COLUMN ================= -->
+          <div class="rounded-2xl overflow-hidden bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)]">
+            <div class="flex items-center justify-between px-6 py-4 bg-linear-to-r from-amber-400 to-orange-500">
+              <div class="flex items-center gap-3">
+                <h3 class="text-xl font-semibold text-white">In Progress</h3>
+                <span id="progressCount" class="px-3 py-1 text-sm rounded-full bg-white/20 text-white">
+                  0
+                </span>
+              </div>
+
+              <span class="text-white text-lg">⌄</span>
+            </div>
+
+            <div id="progressContainer" class="p-6 space-y-6 min-h-75">
+              <!-- IN PROGRESS CARDS WILL BE APPENDED HERE -->
+            </div>
+
+            <button id="openModalProgress"
+              class="w-full flex items-center justify-center gap-3 py-4 hover:cursor-pointer rounded-2xl border-2 border-dashed border-[hsl(260_25%_30%)] bg-[hsl(260_25%_12%)] text-[hsl(210_20%_70%)] hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[hsl(260_25%_15%)] hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition duration-300">
+              <span class="text-2xl font-light">+</span>
+              <span class="text-lg font-medium tracking-wide">
+                Add Task
+              </span>
             </button>
-            <button
-              type="button"
-              class="difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]"
-            >
-              Hard
-            </button>
+          </div>
+
+          <!-- ================= COMPLETED COLUMN ================= -->
+          <div class="rounded-2xl overflow-hidden bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)]">
+            <div class="flex items-center justify-between px-6 py-4 bg-linear-to-r from-green-500 to-emerald-600">
+              <div class="flex items-center gap-3">
+                <h3 class="text-xl font-semibold text-white">Completed</h3>
+                <span id="completedCount" class="px-3 py-1 text-sm rounded-full bg-white/20 text-white">
+                  0
+                </span>
+              </div>
+
+              <span class="text-white text-lg">⌄</span>
+            </div>
+
+            <div id="completedContainer" class="p-6 space-y-6 min-h-75">
+              <!-- COMPLETED CARDS WILL BE APPENDED HERE -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <div class="flex justify-center">
+    <section
+      class="profile-content bg-[url('src/assets/background_profilepage.jpg')] bg-cover bg-fixed flex items-center min-h-screen font-sans">
+      <div
+        class="w-250 h-auto bg-[#1a112e]/75 backdrop-blur-md border-[3px] border-[#3a2b5e] rounded-[30px] p-6 shadow-[0_0_20px_rgba(142,84,233,0.8)]">
+        <div class="flex mr-4">
+          <button
+            class="text-white text-xl hover:bg-[#3a2b5e] hover:cursor-pointer font-bold font-sans p-3 profile-backbtn rounded-2xl">
+            Back
+          </button>
+          <div class="flex justify-center w-full">
+            <h1 class="text-5xl text-center font-bold px-3 text-white mb-1">
+              My Profile
+            </h1>
           </div>
         </div>
 
-        <div class="mb-6">
-          <label class="block mb-2 text-[hsl(210_20%_70%)]"> Deadline </label>
-          <input
-            id="taskTime"
-            type="number"
-            class="w-full p-3 rounded-lg bg-[hsl(260_25%_15%)] border border-[hsl(260_25%_20%)] focus:outline-none focus:border-[#06b6d4]"
-            placeholder="Add in Hours"
-          />
+        <div class="flex items-center gap-6 mb-8 mt-2">
+          <div class="relative">
+            <div class="w-52 rounded-full border-4 border-[#8e54e9] p-1 shadow-[0_0_20px_rgba(142,84,233,0.8)]">
+              <img src="src/assets/cute-anime-profile-pictures-0lifptfs0jd9fml3.png" alt="Avatar"
+                class="w-full h-full rounded-full object-cover z-20" />
+            </div>
+          </div>
+
+          <div class="flex-1">
+            <h1 class="text-3xl font-bold text-white mb-1">Avatar</h1>
+            <div
+              class="inline-block bg-[#2d1b4d] border border-[#ffcc33] text-[#ffcc33] text-sm px-3 py-0.5 rounded-md mb-4">
+              Level 7 ★
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-xs text-gray-300 mb-1 px-1">
+                  <span class="font-bold"> ⚡️ XP</span>
+                  <span>650 / 1000</span>
+                </div>
+                <div class="w-full bg-[#110a21] h-2.5 rounded-full overflow-hidden border border-gray-800">
+                  <div class="bg-linear-to-r from-[#2193b0] to-[#6dd5ed] h-full w-[65%] shadow-[0_0_10px_#2193b0]">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs text-gray-300 mb-1 px-1">
+                  <span class="font-bold">❤️ HP</span>
+                  <span>85%</span>
+                </div>
+                <div class="w-full bg-[#110a21] h-2.5 rounded-full overflow-hidden border border-gray-800">
+                  <div class="bg-linear-to-r from-[#ee0979] to-[#ff6a00] h-full w-[85%] shadow-[0_0_10px_#ee0979]">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="flex justify-end gap-4">
-          <button
-            id="cancelTask"
-            class="px-4 py-2 rounded-lg bg-[hsl(260_25%_15%)] hover:bg-[hsl(260_25%_20%)]"
-          >
-            Cancel
-          </button>
+        <div class="grid grid-cols-3 gap-2 pt-6 border-t border-[#ffffff]/50">
+          <div class="text-center border-r border-[#ffffff]/50">
+            <div class="flex items-center justify-center gap-1 text-[#ffcc33]">
+              <span class="text-lg">★</span>
+              <span class="text-xl font-bold text-white">2450</span>
+            </div>
+            <p class="text-xs text-gray-400">XP Points</p>
+          </div>
 
-          <button
-            id="saveTask"
-            class="px-4 py-2 rounded-lg bg-[hsl(260_25%_15%)] hover:bg-[hsl(260_25%_20%)]"
-          >
-            Add Quest
+          <div class="text-center border-r border-[#ffffff]/50">
+            <div class="flex items-center justify-center gap-1 text-red-500">
+              <span class="text-lg">❤</span>
+              <span class="text-xl font-bold text-white">85%</span>
+            </div>
+            <p class="text-xs text-gray-400">Health</p>
+          </div>
+
+          <div class="text-center">
+            <div class="flex items-center justify-center gap-1 text-[#ffcc33]">
+              <span class="text-lg">★</span>
+              <span class="text-xl font-bold text-white">Level 7</span>
+              <span class="text-lg">★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= TASK MODAL ================= -->
+  <div id="taskModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm items-center flex hidden justify-center z-50">
+    <div class="w-105 bg-[hsl(260_25%_12%)] border border-[hsl(260_25%_20%)] rounded-2xl p-8 shadow-xl">
+      <h2 class="text-2xl font-bold mb-6 text-[#8b5cf6]">Create New Quest</h2>
+      <div class="mb-4 mt-4">
+        <label class="block mb-2 text-[hsl(210_20%_70%)]"> Task Name </label>
+        <input id="taskName"
+          class="w-full p-3 rounded-lg bg-[hsl(260_25%_15%)] border border-[hsl(260_25%_20%)] focus:outline-none focus:border-[#8b5cf6]"
+          type="text" placeholder="Add Task Name" />
+      </div>
+
+      <div class="mb-4">
+        <label class="block mb-2 text-[hsl(210_20%_70%)]"> Difficulty </label>
+        <div class="flex gap-3">
+          <button type="button" class="difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]">
+            Easy
+          </button>
+          <button type="button" class="difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]">
+            Medium
+          </button>
+          <button type="button" class="difficulty-btn px-4 py-2 rounded-lg border border-[hsl(260_25%_20%)]">
+            Hard
           </button>
         </div>
       </div>
+
+      <div class="mb-6">
+        <label class="block mb-2 text-[hsl(210_20%_70%)]"> Deadline </label>
+        <input id="taskTime" type="number"
+          class="w-full p-3 rounded-lg bg-[hsl(260_25%_15%)] border border-[hsl(260_25%_20%)] focus:outline-none focus:border-[#06b6d4]"
+          placeholder="Add in Hours" />
+      </div>
+
+      <div class="flex justify-end gap-4">
+        <button id="cancelTask" class="px-4 py-2 rounded-lg bg-[hsl(260_25%_15%)] hover:bg-[hsl(260_25%_20%)]">
+          Cancel
+        </button>
+
+        <button id="saveTask" class="px-4 py-2 rounded-lg bg-[hsl(260_25%_15%)] hover:bg-[hsl(260_25%_20%)]">
+          Add Quest
+        </button>
+      </div>
     </div>
-    <script type="module" src="./src/js/app.js"></script>
-  </body>
+  </div>
+  <script type="module" src="./src/js/app.js"></script>
+</body>
+
 </html>
