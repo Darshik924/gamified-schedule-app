@@ -125,6 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!appData.user.completedTasks) appData.user.completedTasks = 0;
   if (!appData.user.achievements) appData.user.achievements = 0;
   if (!appData.user.coins) appData.user.coins = 0;
+  if (!appData.user.achievementsUnlocked)
+    appData.user.achievementsUnlocked = [];
 
   renderView();
   renderProfile(appData);
@@ -237,6 +239,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    appData.user.completedTasks = appData.tasks.filter(
+      task => task.status === "completed"
+    ).length;
+
     updateCounts();
   }
 
@@ -327,20 +333,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateTaskStatus(id, newStatus) {
-    const task = appData.tasks.find((t) => t.id === id);
-    if (!task) return;
+  const task = appData.tasks.find((t) => t.id === id);
+  if (!task) return;
 
-    if (newStatus === "completed" && task.status !== "completed") {
-      handleXP(task.priority);
-      appData.user.completedTasks += 1;
-    }
+  const wasCompleted = task.status === "completed";
+  task.status = newStatus;
 
-    task.status = newStatus;
-
-    saveToLocalStor(appData);
-    renderAllTasks();
-    renderData(appData);
+  if (!wasCompleted && newStatus === "completed") {
+    handleXP(task.priority);
   }
+
+  saveToLocalStor(appData);
+  renderAllTasks();
+  renderData(appData);
+}
 
   function handleXP(difficulty) {
     const xpGain = XP_REWARDS[difficulty] || 0;
@@ -350,6 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
     appData.user.coins += xpGain / 2;
 
     checkLevelUp();
+    checkAchievements();
   }
 
   function checkLevelUp() {
@@ -421,6 +428,107 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const ACHIEVEMENTS = [
+  {
+    id: "level_5",
+    title: "Level 5",
+    description: "Reach Level 5",
+    icon: "⭐",
+    condition: (user) => user.level >= 5,
+  },
+  {
+    id: "level_10",
+    title: "Level 10",
+    description: "Reach Level 10",
+    icon: "🌟",
+    condition: (user) => user.level >= 10,
+  },
+  {
+    id: "complete_5",
+    title: "5 Tasks",
+    description: "Complete 5 tasks",
+    icon: "⚔️",
+    condition: (user) => user.completedTasks >= 5,
+  },
+  {
+    id: "complete_10",
+    title: "10 Tasks",
+    description: "Complete 10 tasks",
+    icon: "🏆",
+    condition: (user) => user.completedTasks >= 10,
+  },
+];
+
+
+function renderBadges() {
+  const container = document.getElementById("badgesContainer");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  ACHIEVEMENTS.forEach((badge) => {
+    const unlocked = appData.user.achievementsUnlocked.includes(badge.id);
+
+    const badgeEl = document.createElement("div");
+
+    badgeEl.className = `
+      p-4 rounded-xl border text-center transition
+      ${unlocked 
+        ? "bg-yellow-400/20 border-yellow-400 text-yellow-300"
+        : "bg-gray-800 border-gray-700 text-gray-500 opacity-50"}
+    `;
+
+    badgeEl.innerHTML = `
+      <div class="text-3xl mb-2">${badge.icon}</div>
+      <div class="font-bold">${badge.title}</div>
+      <div class="text-xs">${badge.description}</div>
+    `;
+
+    container.appendChild(badgeEl);
+  });
+}
+
+
+  function checkAchievements() {
+    const user = appData.user;
+
+    ACHIEVEMENTS.forEach((achievement) => {
+      const alreadyUnlocked =
+        user.achievementsUnlocked.includes(achievement.id);
+
+      if (!alreadyUnlocked && achievement.condition(user)) {
+        user.achievementsUnlocked.push(achievement.id);
+        user.achievements += 1;
+
+        showAchievementPopup(achievement.title);
+      }
+    });
+
+    saveToLocalStor(appData);
+    renderData(appData);
+    renderBadges();
+  }
+
+
+  function showAchievementPopup(title) {
+    const popup = document.createElement("div");
+
+    popup.className =
+      "fixed top-6 right-6 bg-[#1a112e] border border-[#ffd700] text-[#ffd700] px-6 py-4 rounded-xl shadow-lg z-50";
+
+    popup.innerHTML = `
+    <div class="font-bold text-lg">🏆 Achievement Unlocked!</div>
+    <div class="text-sm mt-1">${title}</div>
+  `;
+
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+      popup.remove();
+    }, 3000);
+  }
+
+
   function updateCounts() {
     if (!todoCount) return;
 
@@ -431,6 +539,8 @@ document.addEventListener("DOMContentLoaded", () => {
       todoContainer.children.length + progressContainer.children.length;
     Total.textContent = completedContainer.children.length;
   }
+  
+  renderBadges();
 });
 
 let profilePicture = document.getElementsByClassName("profilePicture");
@@ -441,3 +551,4 @@ if (localStorage.getItem("loginName") !== null) {
 } else {
   localStorage.setItem("loginName", 0);
 }
+
