@@ -1,7 +1,3 @@
-//Adding the quests part, don't change pls
-
-console.log("MODULE RUNNING");
-
 import { loadFromLocalStor, saveToLocalStor } from "./backend.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -46,9 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const profilePage = document.querySelector(".profile-content");
   const mainPage = document.querySelector(".main-content");
 
-  updateCounts();
+  const XP_REWARDS = {
+    Easy: 50,
+    Medium: 100,
+    Hard: 250,
+  };
 
-  // ================= SAFE EVENT LISTENERS =================
+  updateCounts();
 
   if (profileBtn) {
     profileBtn.addEventListener("click", () => {
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!appData || !appData.tasks || !appData.user) {
     appData = {
       user: {
-        name: "Epic Quester",
+        name: "Harry Potter",
         level: 1,
         xp: 0,
         maxXp: 1000,
@@ -101,7 +101,21 @@ document.addEventListener("DOMContentLoaded", () => {
         completedTasks: 0,
         achievements: 0,
         coins: 500,
-        ownedProfiles: [true, false, false, false, false, false, false, false, false, false, false, false, false],
+        ownedProfiles: [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+        ],
       },
       tasks: [],
     };
@@ -118,8 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderData(appData);
   startTimer();
 
-  // ================= RENDER FUNCTIONS =================
-
   function renderData(appData) {
     const { user } = appData;
 
@@ -130,7 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
     userCoins.textContent = user.coins ?? 0;
     userAchievements.textContent = `${user.achievements}`;
     userXP.textContent = `${user.xp} / ${user.maxXp}`;
-    xpBar.style.width = `${(user.xp / user.maxXp) * 100}%`;
+    const percent = Math.min((user.xp / user.maxXp) * 100, 100);
+    xpBar.style.width = `${percent}%`;
     userTotTasks.textContent = `${user.completedTasks}`;
   }
 
@@ -227,7 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCounts();
   }
 
-
   function createTaskCard(name, difficulty, time, id) {
     let difficultyColor = "bg-[#06b6d4]";
     if (difficulty === "Medium") difficultyColor = "bg-[#ffd700]";
@@ -258,12 +270,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
-
   function startTimer() {
     setInterval(() => {
       const now = Date.now();
 
-      appData.tasks.forEach(task => {
+      appData.tasks.forEach((task) => {
         const card = document.querySelector(`[data-id="${task.id}"]`);
         if (!card) return;
 
@@ -284,14 +295,15 @@ document.addEventListener("DOMContentLoaded", () => {
           timeEl.classList.add("text-red-500");
         } else {
           const hours = Math.floor(remaining / (1000 * 60 * 60));
-          const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+          const minutes = Math.floor(
+            (remaining % (1000 * 60 * 60)) / (1000 * 60),
+          );
 
           timeEl.textContent = `Deadline: ${hours}h ${minutes}m`;
         }
       });
     }, 1000);
   }
-
 
   function attachMoveLogic(card, taskId) {
     const buttons = card.querySelectorAll(".move-btn");
@@ -318,20 +330,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const task = appData.tasks.find((t) => t.id === id);
     if (!task) return;
 
+    if (newStatus === "completed" && task.status !== "completed") {
+      handleXP(task.priority);
+      appData.user.completedTasks += 1;
+    }
+
     task.status = newStatus;
-
-    saveToLocalStor(appData);
-    renderAllTasks();
-  }
-
-  function deleteTask(id) {
-    appData.tasks = appData.tasks.filter(task => task.id !== id);
 
     saveToLocalStor(appData);
     renderAllTasks();
     renderData(appData);
   }
 
+  function handleXP(difficulty) {
+    const xpGain = XP_REWARDS[difficulty] || 0;
+
+    appData.user.xp += xpGain;
+    appData.user.totalXp += xpGain;
+    appData.user.coins += xpGain / 2;
+
+    checkLevelUp();
+  }
+
+  function checkLevelUp() {
+    const { user } = appData;
+
+    while (user.xp >= user.maxXp) {
+      user.xp -= user.maxXp;
+      user.level += 1;
+      user.maxXp = Math.floor(user.maxXp * 1.2);
+
+      alert(`🎉 Level Up! You are now Level ${user.level}!`);
+    }
+
+    saveToLocalStor(appData);
+  }
+
+  function deleteTask(id) {
+    appData.tasks = appData.tasks.filter((task) => task.id !== id);
+
+    saveToLocalStor(appData);
+    renderAllTasks();
+    renderData(appData);
+  }
 
   function updateButtons(card, state) {
     const buttons = card.querySelectorAll(".move-btn");
@@ -351,7 +392,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   function closeModal() {
     modal.classList.add("hidden");
     resetForm();
@@ -367,26 +407,19 @@ document.addEventListener("DOMContentLoaded", () => {
       .forEach((b) => b.classList.remove("bg-[#8b5cf6]", "text-white"));
   }
 
-  // ================= DIFFICULTY SELECTION =================
-
   const difficultyButtons = document.querySelectorAll(".difficulty-btn");
 
   difficultyButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      // Remove active styles from all
       difficultyButtons.forEach((btn) =>
         btn.classList.remove("bg-[#8b5cf6]", "text-white"),
       );
 
-      // Add active style to clicked one
       button.classList.add("bg-[#8b5cf6]", "text-white");
 
-      // Set selected difficulty
       selectedDifficulty = button.textContent.trim();
     });
   });
-
-  // ================= COUNTS =================
 
   function updateCounts() {
     if (!todoCount) return;
@@ -400,14 +433,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+let profilePicture = document.getElementsByClassName("profilePicture");
 
-let profilePicture=document.getElementsByClassName('profilePicture');
-
-if(localStorage.getItem('loginName')!== null){
-let userName=Number(localStorage.getItem('loginName'));
-profilePicture[0].setAttribute("src", `./src/assets/hp_${userName+1}.png`);
-}
-
-else{
-  localStorage.setItem('loginName', 0);
+if (localStorage.getItem("loginName") !== null) {
+  let userName = Number(localStorage.getItem("loginName"));
+  profilePicture[0].setAttribute("src", `./src/assets/hp_${userName + 1}.png`);
+} else {
+  localStorage.setItem("loginName", 0);
 }
