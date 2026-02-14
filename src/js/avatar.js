@@ -1,226 +1,162 @@
-// =======================
-// INITIAL STATE
-// =======================
+// ===============================
+// INITIAL STATE (LOCAL STORAGE)
+// ===============================
 
 let coins = Number(localStorage.getItem("coins")) || 2450;
 let ownedAvatars = JSON.parse(localStorage.getItem("ownedAvatars")) || ["Harry"];
 let selectedAvatar = localStorage.getItem("selectedAvatar") || "Harry";
+let currentAvatar = selectedAvatar;
+
+// ===============================
+// DOM ELEMENTS
+// ===============================
 
 const coinDisplay = document.querySelector(".user-coins");
-const purchaseBtn = document.getElementById("purchaseBtn");
-const useBtn = document.getElementById("useBtn");
 const nameDisplay = document.getElementById("name");
 const costDisplay = document.getElementById("cost");
 const imageDisplay = document.querySelector(".image");
+const purchaseBtn = document.getElementById("purchaseBtn");
+const useBtn = document.getElementById("useBtn");
+const avatarCards = document.querySelectorAll(".avatarCard");
 
-let budget = document.getElementsByClassName('budget');
-
-function updateCoins() {
-    let storedData = localStorage.getItem('gamifiedAppData');
-    let appData = JSON.parse(storedData) || {};
-    budget[0].textContent = `${appData.user.coins}`;
-}
-
-updateCoins();
-coinDisplay.textContent = coins;
-
-// =======================
+// ===============================
 // AVATAR DATA
-// =======================
+// ===============================
 
 const avatars = {
-    Harry: {
-        name: "Harry Potter",
-        price: 0,
-        image: "src/assets/hp_1.png"
-    },
-    Dobby: {
-        name: "Dobby",
-        price: 200,
-        image: "src/assets/hp_2.png"
-    },
-    Ron: {
-        name: "Ron Weasly",
-        price: 300,
-        image: "src/assets/hp_3.png"
-    },
-    Albus: {
-        name: "Albus Dumbledore",
-        price: 500,
-        image: "src/assets/hp_4.png"
-    },
-    Rubeus: {
-        name: "Rubeus Hagrid",
-        price: 400,
-        image: "src/assets/hp_5.png"
-    },
-    Draco: {
-        name: "Draco Malfoy",
-        price: 350,
-        image: "src/assets/hp_6.png"
-    },
-    Voldemort: {
-        name: "Voldemort",
-        price: 800,
-        image: "src/assets/hp_7.png"
-    },
-    Lucious: {
-        name: "Lucious Malfoy",
-        price: 450,
-        image: "src/assets/hp_8.png"
-    },
-    Severus: {
-        name: "Severus Snape",
-        price: 600,
-        image: "src/assets/hp_9.png"
-    },
-    Minerva: {
-        name: "Minerva Mcgonagall",
-        price: 550,
-        image: "src/assets/hp_10.png"
-    },
-    ginny: {
-        name: "Ginny Weasly",
-        price: 300,
-        image: "src/assets/hp_11.png"
-    },
-    hermoine: {
-        name: "Hermoine Granger",
-        price: 400,
-        image: "src/assets/hp_12.png"
-    },
-    Sirius: {
-        name: "Sirius Black",
-        price: 500,
-        image: "src/assets/hp_13.png"
-    }
+    Harry: { name: "Harry Potter", price: 0, image: "src/assets/hp_1.png" },
+    Dobby: { name: "Dobby", price: 200, image: "src/assets/hp_2.png" },
+    Ron: { name: "Ron Weasly", price: 300, image: "src/assets/hp_3.png" },
+    Albus: { name: "Albus Dumbledore", price: 500, image: "src/assets/hp_4.png" },
+    Rubeus: { name: "Rubeus Hagrid", price: 400, image: "src/assets/hp_5.png" },
+    Draco: { name: "Draco Malfoy", price: 350, image: "src/assets/hp_6.png" },
+    Voldemort: { name: "Voldemort", price: 800, image: "src/assets/hp_7.png" },
+    Lucious: { name: "Lucious Malfoy", price: 450, image: "src/assets/hp_8.png" },
+    Severus: { name: "Severus Snape", price: 600, image: "src/assets/hp_9.png" },
+    Minerva: { name: "Minerva Mcgonagall", price: 550, image: "src/assets/hp_10.png" },
+    ginny: { name: "Ginny Weasly", price: 300, image: "src/assets/hp_11.png" },
+    hermoine: { name: "Hermoine Granger", price: 400, image: "src/assets/hp_12.png" },
+    Sirius: { name: "Sirius Black", price: 500, image: "src/assets/hp_13.png" }
 };
 
-let currentAvatar = selectedAvatar;
+// ===============================
+// INITIAL LOAD
+// ===============================
 
-// =======================
-// LOAD OWNED STATE
-// =======================
+coinDisplay.textContent = coins;
+loadAvatar(currentAvatar);
+updateOwnedUI();
+updateButtons();
 
+// ===============================
+// LOAD AVATAR DETAILS
+// ===============================
 
-let currentProfile = Number(localStorage.getItem('currentProfile'));
-profilePhoto[0].setAttribute("src", `src/assets/hp_${currentProfile + 1}.png`);
-name.textContent = `Name: ${arr[currentProfile]}`;
-cost.textContent = `Price: ${price[currentProfile]}`;
+function loadAvatar(id) {
+    const avatar = avatars[id];
 
-let purchaseBtn = document.getElementsByClassName('purchase');
+    nameDisplay.textContent = "Name: " + avatar.name;
+    costDisplay.textContent = "Price: " + avatar.price;
+    imageDisplay.src = avatar.image;
 
-for (let i = 0; i < 13; i++) {
-    cards[i].addEventListener('click', () => {
-        profilePhoto[0].setAttribute("src", `src/assets/hp_${i + 1}.png`);
-        name.textContent = `NAME: ${arr[i]}`
-        cost.textContent = `PRICE: ${price[i]}`;
-        localStorage.setItem('currentProfile', i);
-        if (appData.user.ownedProfiles[i]) {
-            purchaseBtn[0].textContent = "Use As Profile";
+    currentAvatar = id;
+    updateButtons();
+}
+
+// ===============================
+// UPDATE OWNED UI (REMOVE BLUR)
+// ===============================
+
+function updateOwnedUI() {
+    ownedAvatars.forEach(id => {
+        const card = document.getElementById(id);
+        if (card) {
+            card.classList.remove("blur-sm");
         }
-        else {
-            purchaseBtn[0].textContent = "Purchase";
+    });
+}
 
-            function updateOwnedUI() {
-                ownedAvatars.forEach(id => {
-                    const card = document.getElementById(id);
-                    if (card) {
-                        card.classList.remove("blur-sm");
+// ===============================
+// UPDATE BUTTON TEXT
+// ===============================
 
-                    }
-                });
-            }
+function updateButtons() {
 
-            purchaseBtn[0].addEventListener('click', () => {
-                currentProfile = Number(localStorage.getItem('currentProfile'));
-                if (appData.user.ownedProfiles[currentProfile]) {
-                    alert("You already own this profile!");
-                }
+    if (ownedAvatars.includes(currentAvatar)) {
+        purchaseBtn.textContent = "Owned";
+        purchaseBtn.disabled = true;
+    } else {
+        purchaseBtn.textContent = "Purchase";
+        purchaseBtn.disabled = false;
+    }
 
-                else {
-                    let amount = price[currentProfile];
-                    if (amount > appData.user.coins) {
-                        alert("Not enough Coins!!! Complete Tasks to get coins.");
-                    }
-                    else {
-                        appData.user.coins -= amount;
-                        appData.user.ownedProfiles[currentProfile] = true;
-                        purchaseBtn[0].textContent = "Use As Profile";
-                        localStorage.setItem('gamifiedAppData', JSON.stringify(appData));
-                        updateCoins();
-                        updateOwnedUI();
+    if (selectedAvatar === currentAvatar) {
+        useBtn.textContent = "Currently Using";
+        useBtn.disabled = true;
+    } else {
+        useBtn.textContent = "Use As Profile";
+        useBtn.disabled = false;
+    }
+}
 
-                        // =======================
-                        // LOAD SELECTED ON PAGE LOAD
-                        // =======================
+// ===============================
+// CARD CLICK
+// ===============================
 
-                        function loadAvatar(id) {
-                            const avatar = avatars[id];
-                            nameDisplay.textContent = "Name: " + avatar.name;
-                            costDisplay.textContent = "Price: " + avatar.price;
-                            imageDisplay.src = avatar.image;
-                        }
+avatarCards.forEach(card => {
+    card.addEventListener("click", () => {
+        loadAvatar(card.id);
+    });
+});
 
-                        loadAvatar(currentAvatar);
+// ===============================
+// PURCHASE LOGIC
+// ===============================
 
-                        // =======================
-                        // CLICK AVATAR
-                        // =======================
+purchaseBtn.addEventListener("click", () => {
 
-                        document.querySelectorAll(".avatarCard").forEach(card => {
-                            card.addEventListener("click", () => {
-                                currentAvatar = card.id;
-                                loadAvatar(currentAvatar);
-                            });
-                        });
+    if (ownedAvatars.includes(currentAvatar)) {
+        alert("You already own this avatar!");
+        return;
+    }
 
-                        // =======================
-                        // PURCHASE LOGIC
-                        // =======================
+    const price = avatars[currentAvatar].price;
 
-                        purchaseBtn.addEventListener("click", () => {
+    if (coins >= price) {
 
-                            if (ownedAvatars.includes(currentAvatar)) {
-                                alert("This avatar is already owned!");
-                                return;
+        coins -= price;
+        ownedAvatars.push(currentAvatar);
 
-                            }
+        localStorage.setItem("coins", coins);
+        localStorage.setItem("ownedAvatars", JSON.stringify(ownedAvatars));
 
-                            const price = avatars[currentAvatar].price;
+        coinDisplay.textContent = coins;
 
-                            if (coins >= price) {
+        updateOwnedUI();
+        updateButtons();
 
-                                coins -= price;
-                                ownedAvatars.push(currentAvatar);
+        alert("Purchase successful!");
 
-                                localStorage.setItem("coins", coins);
-                                localStorage.setItem("ownedAvatars", JSON.stringify(ownedAvatars));
+    } else {
+        alert("Not enough coins!");
+    }
+});
 
-                                coinDisplay.textContent = coins;
+// ===============================
+// USE AS PROFILE
+// ===============================
 
-                                document.getElementById(currentAvatar).classList.remove("blur-sm");
+useBtn.addEventListener("click", () => {
 
-                                alert("Purchase successful!");
+    if (!ownedAvatars.includes(currentAvatar)) {
+        alert("You need to purchase this avatar first!");
+        return;
+    }
 
-                            } else {
-                                alert("Not enough coins!");
-                            }
-                        });
+    selectedAvatar = currentAvatar;
+    localStorage.setItem("selectedAvatar", selectedAvatar);
 
-                        // =======================
-                        // USE AS PROFILE
-                        // =======================
+    updateButtons();
 
-                        useBtn.addEventListener("click", () => {
-
-                            if (!ownedAvatars.includes(currentAvatar)) {
-                                alert("You need to purchase this avatar first!");
-                                return;
-                            }
-
-                            selectedAvatar = currentAvatar;
-                            localStorage.setItem("selectedAvatar", selectedAvatar);
-
-                            alert("Profile avatar updated!");
-                        });
+    alert("Profile avatar updated!");
+});
