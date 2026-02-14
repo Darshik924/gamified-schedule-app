@@ -1,90 +1,116 @@
 import { loadFromLocalStor, saveToLocalStor } from "./backend.js";
 
-let arr=["Harry Potter", "Dobby", "Ron Weasly", "Albus Dumbeldore", "Rubeus Hagrid", "Draco Malfoy", "Voldemort", "Lucious Malfoy", "Severus Snape", "Minerva McGonagall", "Ginny Weasly", "Hermoine Granger", "Sirius Black"];
+let arr = ["Harry Potter", "Dobby", "Ron Weasly", "Albus Dumbeldore", "Rubeus Hagrid", "Draco Malfoy", "Voldemort", "Lucious Malfoy", "Severus Snape", "Minerva McGonagall", "Ginny Weasly", "Hermoine Granger", "Sirius Black"];
 
-let price=[100, 40, 40, 55, 65, 80, 120, 50, 60, 80, 80, 100, 50 ];
+let price = [100, 40, 40, 55, 65, 80, 120, 50, 60, 80, 80, 100, 50];
 
-let budget=document.getElementsByClassName('budget');
+let budget = document.getElementsByClassName('budget');
 
-function updateCoins(){
-    let storedData=localStorage.getItem('gamifiedAppData');
-    let appData=JSON.parse(storedData) || {};
-    budget[0].textContent=`${appData.user.coins}`;
+function updateCoins() {
+    let storedData = localStorage.getItem('gamifiedAppData');
+    let appData = JSON.parse(storedData) || {};
+    budget[0].textContent = `${appData.user.coins}`;
 }
 
 updateCoins();
 
-function availability(i){
-    if(appData.user.ownedProfiles[i]){
-            purchaseBtn[0].textContent="Use As Profile";
-        }
-        else{
-            purchaseBtn[0].textContent="Purchase";
-        }
+function availability(i) {
+    if (appData.user.ownedProfiles[i]) {
+        purchaseBtn[0].textContent = "Use As Profile";
+    }
+    else {
+        purchaseBtn[0].textContent = "Purchase";
+    }
 }
 
-if(localStorage.getItem('loginName')===null){
+if (localStorage.getItem('loginName') === null) {
     localStorage.setItem('loginName', 0);
 }
 
-let initial=Number(localStorage.getItem('loginName'));
+let initial = Number(localStorage.getItem('loginName'));
 // availability(localStorage.getItem('loginName'));
 
-let cards=document.querySelectorAll('.profCard');
-let profilePhoto=document.getElementsByClassName('image');
-let name=document.getElementById('name');
-let cost=document.getElementById('cost');
-let profile=document.getElementsByClassName('profilePicture');
+let cards = document.querySelectorAll('.profCard');
+let avatarCards = document.querySelectorAll('.avatarCard');
 
-let storedData=localStorage.getItem('gamifiedAppData');
-let appData=JSON.parse(storedData) || {};
+let profilePhoto = document.getElementsByClassName('image');
+let name = document.getElementById('name');
+let cost = document.getElementById('cost');
+let profile = document.getElementsByClassName('profilePicture');
 
-let purchaseBtn=document.getElementsByClassName('purchase');
-let currentProfile=Number(localStorage.getItem('currentProfile'));
-profilePhoto[0].setAttribute("src", `src/assets/hp_${initial+1}.png`);
-name.textContent=`Name: ${arr[initial]}`;
-cost.textContent=`Price: ${price[initial]}`;
+let storedData = localStorage.getItem('gamifiedAppData');
+let appData = JSON.parse(storedData);
+
+if (!appData || !appData.user) {
+    appData = {
+        user: {
+            coins: 1000,
+            ownedProfiles: Array(13).fill(false),
+            name: "Harry Potter"
+        }
+    };
+    localStorage.setItem('gamifiedAppData', JSON.stringify(appData));
+}
+
+
+let purchaseBtn = document.getElementsByClassName('purchase');
+let currentProfile = Number(localStorage.getItem('currentProfile'));
+profilePhoto[0].setAttribute("src", `src/assets/hp_${initial + 1}.png`);
+name.textContent = `Name: ${arr[initial]}`;
+cost.textContent = `Price: ${price[initial]}`;
 availability(initial);
 
-for(let i=0; i<13; i++){
-    cards[i].addEventListener('click', ()=>{
-        profilePhoto[0].setAttribute("src", `src/assets/hp_${i+1}.png`);
-        name.textContent=`NAME: ${arr[i]}`
-        cost.textContent=`PRICE: ${price[i]}`;
+for (let i = 0; i < 13; i++) {
+
+    if (appData.user.ownedProfiles[i]) {
+        avatarCards[i].classList.remove('blur-sm');
+    }
+
+    cards[i].addEventListener('click', () => {
+        profilePhoto[0].setAttribute("src", `src/assets/hp_${i + 1}.png`);
+        name.textContent = `NAME: ${arr[i]}`
+        cost.textContent = `PRICE: ${price[i]}`;
         localStorage.setItem('currentProfile', i);
-        if(appData.user.ownedProfiles[i]){
-            purchaseBtn[0].textContent="Use As Profile";
+        if (appData.user.ownedProfiles[i]) {
+            purchaseBtn[0].textContent = "Use As Profile";
         }
-        else{
-            purchaseBtn[0].textContent="Purchase";
+        else {
+            purchaseBtn[0].textContent = "Purchase";
         }
     });
 }
 
-    purchaseBtn[0].addEventListener('click', ()=>{
-        currentProfile=Number(localStorage.getItem('currentProfile'));
-        if (appData.user.ownedProfiles[currentProfile]) {
-            localStorage.setItem('loginName', currentProfile);
-        
-        storedData=localStorage.getItem('gamifiedAppData');
-        appData=JSON.parse(storedData) || {};
+purchaseBtn[0].addEventListener('click', () => {
+    currentProfile = Number(localStorage.getItem('currentProfile'));
+    if (appData.user.ownedProfiles[currentProfile]) {
+        localStorage.setItem('loginName', currentProfile);
 
-        appData.user.name=`${arr[currentProfile]}`;
+        storedData = localStorage.getItem('gamifiedAppData');
+        appData = JSON.parse(storedData) || {};
+
+        appData.user.name = `${arr[currentProfile]}`;
         localStorage.setItem('gamifiedAppData', JSON.stringify(appData));
 
-        }
+        profilePhoto[0].setAttribute("src", `src/assets/hp_${currentProfile + 1}.png`);
+        name.textContent = `Name: ${arr[currentProfile]}`;
 
-    else{
+
+    }
+
+    else {
         let amount = price[currentProfile];
-    if(amount>appData.user.coins){
-        alert("Not enough Coins!!! Complete Tasks to get coins.");
-    }
-    else{
-        appData.user.coins-=amount;
-        appData.user.ownedProfiles[currentProfile] = true;
-        purchaseBtn[0].textContent="Use As Profile";
-        localStorage.setItem('gamifiedAppData', JSON.stringify(appData));
-        updateCoins();
-    }
+        if (amount > appData.user.coins) {
+            alert("Not enough Coins!!! Complete Tasks to get coins.");
+        }
+        else {
+            appData.user.coins -= amount;
+            appData.user.ownedProfiles[currentProfile] = true;
+            purchaseBtn[0].textContent = "Use As Profile";
+
+            avatarCards[currentProfile].classList.remove('blur-sm');
+
+            localStorage.setItem('gamifiedAppData', JSON.stringify(appData));
+            updateCoins();
+        }
     }
 });
