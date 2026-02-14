@@ -399,3 +399,15 @@ document.addEventListener("DOMContentLoaded", () => {
     Total.textContent = completedContainer.children.length;
   }
 });
+
+
+let profilePicture=document.getElementsByClassName('profilePicture');
+
+if(localStorage.getItem('loginName')!== null){
+let userName=Number(localStorage.getItem('loginName'));
+profilePicture[0].setAttribute("src", `./src/assets/hp_${userName+1}.png`);
+}
+
+else{
+  localStorage.setItem('loginName', 0);
+}
