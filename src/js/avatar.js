@@ -4,7 +4,15 @@ let arr=["Harry Potter", "Dobby", "Ron Weasly", "Albus Dumbeldore", "Rubeus Hagr
 
 let price=[100, 20, 40, 45, 45, 50, 100, 20, 50, 50, 40, 80, 40 ];
 
+let budget=document.getElementsByClassName('budget');
 
+function updateCoins(){
+    let storedData=localStorage.getItem('gamifiedAppData');
+    let appData=JSON.parse(storedData) || {};
+    budget[0].textContent=`${appData.user.coins}`;
+}
+
+updateCoins();
 
 let cards=document.querySelectorAll('.profCard');
 let profilePhoto=document.getElementsByClassName('image');
@@ -29,9 +37,14 @@ for(let i=0; i<13; i++){
         name.textContent=`NAME: ${arr[i]}`
         cost.textContent=`PRICE: ${price[i]}`;
         localStorage.setItem('currentProfile', i);
+        if(appData.user.ownedProfiles[i]){
+            purchaseBtn[0].textContent="Use As Profile";
+        }
+        else{
+            purchaseBtn[0].textContent="Purchase";
+        }
     });
 }
-
 
     purchaseBtn[0].addEventListener('click', ()=>{
         currentProfile=Number(localStorage.getItem('currentProfile'));
@@ -47,8 +60,9 @@ for(let i=0; i<13; i++){
     else{
         appData.user.coins-=amount;
         appData.user.ownedProfiles[currentProfile] = true;
-        purchaseBtn[0].textContent="Use as Profile";
+        purchaseBtn[0].textContent="Use As Profile";
         localStorage.setItem('gamifiedAppData', JSON.stringify(appData));
+        updateCoins();
     }
     }
 });
