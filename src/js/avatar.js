@@ -64,14 +64,7 @@ for(let i=0; i<13; i++){
     purchaseBtn[0].addEventListener('click', ()=>{
         currentProfile=Number(localStorage.getItem('currentProfile'));
         if (appData.user.ownedProfiles[currentProfile]) {
-        localStorage.setItem('loginName', currentProfile);
-        
-        storedData=localStorage.getItem('gamifiedAppData');
-        appData=JSON.parse(storedData) || {};
-
-        appData.user.name=`${arr[currentProfile]}`;
-        localStorage.setItem('gamifiedAppData', JSON.stringify(appData));
-
+        alert("You already own this profile!"); 
         }
 
     else{
@@ -88,7 +81,3 @@ for(let i=0; i<13; i++){
     }
     }
 });
-
-
-
-

@@ -260,37 +260,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   function startTimer() {
-  setInterval(() => {
-    const now = Date.now();
+    setInterval(() => {
+      const now = Date.now();
 
-    appData.tasks.forEach(task => {
-  const card = document.querySelector(`[data-id="${task.id}"]`);
-  if (!card) return;
+      appData.tasks.forEach(task => {
+        const card = document.querySelector(`[data-id="${task.id}"]`);
+        if (!card) return;
 
-  const timeEl = card.querySelector(".task-time");
-  if (!timeEl) return;
+        const timeEl = card.querySelector(".task-time");
+        if (!timeEl) return;
 
-  if (task.status === "completed") {
-    timeEl.textContent = "✅ Completed";
-    timeEl.classList.remove("text-red-500");
-    timeEl.classList.add("text-green-400");
-    return;
+        if (task.status === "completed") {
+          timeEl.textContent = "✅ Completed";
+          timeEl.classList.remove("text-red-500");
+          timeEl.classList.add("text-green-400");
+          return;
+        }
+
+        const remaining = task.deadline - Date.now();
+
+        if (remaining <= 0) {
+          timeEl.textContent = "⛔ Time Over";
+          timeEl.classList.add("text-red-500");
+        } else {
+          const hours = Math.floor(remaining / (1000 * 60 * 60));
+          const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+
+          timeEl.textContent = `Deadline: ${hours}h ${minutes}m`;
+        }
+      });
+    }, 1000);
   }
-
-  const remaining = task.deadline - Date.now();
-
-  if (remaining <= 0) {
-    timeEl.textContent = "⛔ Time Over";
-    timeEl.classList.add("text-red-500");
-  } else {
-    const hours = Math.floor(remaining / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-
-    timeEl.textContent = `Deadline: ${hours}h ${minutes}m`;
-  }
-  });
-  }, 1000);
-}
 
 
   function attachMoveLogic(card, taskId) {
@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     deleteBtn.addEventListener("click", () => {
-    deleteTask(taskId);
+      deleteTask(taskId);
     });
   }
 
@@ -325,11 +325,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function deleteTask(id) {
-  appData.tasks = appData.tasks.filter(task => task.id !== id);
+    appData.tasks = appData.tasks.filter(task => task.id !== id);
 
-  saveToLocalStor(appData);
-  renderAllTasks();
-  renderData(appData);
+    saveToLocalStor(appData);
+    renderAllTasks();
+    renderData(appData);
   }
 
 
@@ -411,3 +411,75 @@ profilePicture[0].setAttribute("src", `./src/assets/hp_${userName+1}.png`);
 else{
   localStorage.setItem('loginName', 0);
 }
+const avatars = {
+  Harry: {
+    name: "Harry Potter",
+    image: "src/assets/hp_1.png"
+  },
+  Dobby: {
+    name: "Dobby",
+    image: "src/assets/hp_2.png"
+  },
+  Ron: {
+    name: "Ron Weasly",
+    image: "src/assets/hp_3.png"
+  },
+  Albus: {
+    name: "Albus Dumbledore",
+    image: "src/assets/hp_4.png"
+  },
+  Rubeus: {
+    name: "Rubeus Hagrid",
+    image: "src/assets/hp_5.png"
+  },
+  Draco: {
+    name: "Draco Malfoy",
+    image: "src/assets/hp_6.png"
+  },
+  Voldemort: {
+    name: "Voldemort",
+    image: "src/assets/hp_7.png"
+  },
+  Lucious: {
+    name: "Lucious Malfoy",
+    image: "src/assets/hp_8.png"
+  },
+  Severus: {
+    name: "Severus Snape",
+    image: "src/assets/hp_9.png"
+  },
+  Minerva: {
+    name: "Minerva Mcgonagall",
+    image: "src/assets/hp_10.png"
+  },
+  ginny: {
+    name: "Ginny Weasly",
+    image: "src/assets/hp_11.png"
+  },
+  hermoine: {
+    name: "Hermoine Granger",
+    image: "src/assets/hp_12.png"
+  },
+  Sirius: {
+    name: "Sirius Black",
+    image: "src/assets/hp_13.png"
+  }
+};
+
+
+const selectedAvatar =
+  localStorage.getItem("selectedAvatar") || "Harry";
+
+const profileImage = document.querySelector(".profilePicture");
+
+if (avatars[selectedAvatar]) {
+  profileImage.src = avatars[selectedAvatar].image;
+}
+
+const nameElement = document.getElementById("name");
+
+if (avatars[selectedAvatar]) {
+  profileImage.src = avatars[selectedAvatar].image;
+  nameElement.textContent = avatars[selectedAvatar].name;
+}
+
