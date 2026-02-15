@@ -24,15 +24,13 @@ Traditional to-do lists are boring and often fail to motivate long-term habit bu
 3. Currency & Shop: Earn coins upon leveling up. Visit the Purchase Window to buy new character cards.</br>
 4. Customizable Profiles: Initially unlocked with Harry Potter, users can "purchase" and set Ron, Dobby, Dumbledore and many more as their active profile avatar.</br>
 5. Deadline Tracking: Add timelines to your tasks to ensure you don't miss your "potions homework."</br>
-6. Penalties: User will loose XP points on missing the deadline.</br>
+
 <hr>
 🚀 How to Run</br>
 1. Clone the repository:</br>
 2. Open index.html in any modern web browser.<br>
 3. Start your magical productivity journey!
-<hr>
-"In our system, time is a resource. Just like a student at Hogwarts loses points for their House by failing a quest, our users lose XP if they miss a deadline"
-<hr>
+
 👨‍💻 Team: CTRL ALT ELITE</br>
 1. Vishruthi</br>
 2. Eklaya</br>
