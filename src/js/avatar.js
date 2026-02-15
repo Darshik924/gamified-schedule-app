@@ -16,7 +16,7 @@ let arr = [
   "Sirius Black",
 ];
 
-let price = [100, 40, 40, 55, 65, 80, 120, 50, 60, 80, 80, 100, 50];
+let price = [1000, 400, 400, 550, 650, 800, 1200, 500, 600, 800, 800, 1000, 500];
 
 let budget = document.getElementsByClassName("budget");
 
